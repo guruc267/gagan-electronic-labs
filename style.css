@@ -1,8 +1,10 @@
-/* =====================
-   GLOBAL STYLES
-===================== */
+/* =========================
+   GLOBAL RESET & BASE
+========================= */
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
@@ -10,15 +12,15 @@ html {
 }
 
 body {
-  margin: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: #f4f8fc;
   color: #222;
+  line-height: 1.6;
 }
 
-/* =====================
+/* =========================
    HEADER / NAVBAR
-===================== */
+========================= */
 header {
   position: sticky;
   top: 0;
@@ -28,91 +30,128 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
 }
 
 header h1 {
-  color: #fff;
+  color: white;
   font-size: 1.4rem;
   letter-spacing: 1px;
-  margin: 0;
 }
 
 nav a {
-  color: #fff;
+  color: white;
   margin-left: 18px;
   text-decoration: none;
   font-weight: 500;
-  transition: opacity 0.2s;
+  position: relative;
 }
 
-nav a:hover {
-  opacity: 0.8;
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 2px;
+  background: #00c6ff;
+  transition: 0.3s;
 }
 
-/* =====================
+nav a:hover::after {
+  width: 100%;
+}
+
+/* =========================
    HERO SECTION
-===================== */
+========================= */
 .hero {
-  min-height: 80vh;
-  background: linear-gradient(135deg, #0d47a1, #1976d2);
-  color: #fff;
+  min-height: 90vh;
+  background:
+    linear-gradient(rgba(13,71,161,0.88), rgba(25,118,210,0.88)),
+    url("https://images.unsplash.com/photo-1581090700227-1e37b190418e");
+  background-size: cover;
+  background-position: center;
+  color: white;
   text-align: center;
   padding: 60px 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  animation: fadeIn 1.2s ease;
 }
 
 .hero h2 {
-  font-size: 2.8rem;
+  font-size: 3rem;
   margin-bottom: 15px;
 }
 
 .hero p {
-  font-size: 1.1rem;
   max-width: 650px;
-  line-height: 1.6;
+  font-size: 1.1rem;
   opacity: 0.95;
 }
 
-/* =====================
-   BUTTON
-===================== */
+/* =========================
+   NEON BUTTON (CTA)
+========================= */
 .btn {
-  margin-top: 25px;
-  padding: 14px 34px;
-  background: #fff;
-  color: #0d47a1;
-  border-radius: 30px;
+  margin-top: 30px;
+  padding: 15px 42px;
+  background: linear-gradient(135deg, #00c6ff, #1976d2);
+  color: white;
+  border-radius: 40px;
   font-weight: 600;
   text-decoration: none;
-  transition: transform 0.3s, box-shadow 0.3s;
+  letter-spacing: 0.6px;
+  box-shadow: 0 0 15px rgba(0,198,255,0.6),
+              0 0 30px rgba(0,198,255,0.3);
+  transition: all 0.3s ease;
 }
 
 .btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
+  transform: translateY(-5px) scale(1.04);
+  box-shadow: 0 0 25px rgba(0,198,255,0.8),
+              0 0 50px rgba(0,198,255,0.6);
 }
 
-/* =====================
+/* =========================
    SERVICES SECTION
-===================== */
+========================= */
 .services {
-  background: #f4f8fc;
-  padding: 70px 40px;
+  padding: 80px 40px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 30px;
+  gap: 35px;
 }
 
 .service-card {
-  background: #fff;
-  padding: 35px 25px;
-  border-radius: 18px;
+  background: rgba(255,255,255,0.97);
+  padding: 40px 30px;
+  border-radius: 20px;
   text-align: center;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-  transition: transform 0.35s, box-shadow 0.35s;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s ease;
+}
+
+.service-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,#00c6ff,#1976d2);
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.service-card:hover::before {
+  opacity: 0.08;
+}
+
+.service-card:hover {
+  transform: translateY(-12px);
 }
 
 .service-card h3 {
@@ -120,57 +159,123 @@ nav a:hover {
   color: #0d47a1;
 }
 
-.service-card p {
-  font-size: 0.95rem;
-  line-height: 1.5;
-}
-
-.service-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.15);
-}
-
-/* =====================
+/* =========================
    YOUTUBE SECTION
-===================== */
+========================= */
 .youtube {
-  background: #fff;
-  margin: -90px auto 70px;
-  padding: 45px 35px;
+  background: white;
+  margin: -100px auto 80px;
+  padding: 50px 35px;
   width: 92%;
-  max-width: 1000px;
-  border-radius: 18px;
-  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.15);
+  max-width: 1050px;
+  border-radius: 20px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.18);
   text-align: center;
 }
 
 .youtube h2 {
-  color: #0d47a1;
   margin-bottom: 25px;
+  color: #0d47a1;
 }
 
 .youtube iframe {
   width: 100%;
-  max-width: 850px;
+  max-width: 900px;
   height: 480px;
-  border-radius: 14px;
+  border-radius: 15px;
   border: none;
 }
 
-/* =====================
+/* =========================
+   CTA SECTION
+========================= */
+.cta {
+  background: linear-gradient(135deg, #0d47a1, #1976d2);
+  color: white;
+  text-align: center;
+  padding: 80px 30px;
+}
+
+.cta h2 {
+  font-size: 2.3rem;
+  margin-bottom: 10px;
+}
+
+.cta p {
+  opacity: 0.9;
+  margin-bottom: 25px;
+}
+
+/* =========================
+   CONTACT CARDS
+========================= */
+.contact {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 50px;
+}
+
+.contact-card {
+  background: white;
+  width: 260px;
+  padding: 25px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+  transition: 0.3s;
+}
+
+.contact-card:hover {
+  transform: translateY(-8px);
+}
+
+/* =========================
+   WHATSAPP FLOATING BUTTON
+========================= */
+.whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: white;
+  padding: 15px 18px;
+  border-radius: 50%;
+  font-size: 22px;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+  z-index: 999;
+}
+
+/* =========================
    FOOTER
-===================== */
+========================= */
 footer {
   background: #0d47a1;
-  color: #fff;
+  color: white;
   text-align: center;
   padding: 18px;
   font-size: 0.9rem;
 }
 
-/* =====================
-   RESPONSIVE DESIGN
-===================== */
+/* =========================
+   ANIMATIONS
+========================= */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
 @media (max-width: 768px) {
   header {
     flex-direction: column;
@@ -179,10 +284,6 @@ footer {
 
   nav {
     margin-top: 10px;
-  }
-
-  nav a {
-    margin: 0 10px;
   }
 
   .hero h2 {
