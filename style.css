@@ -30,7 +30,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.25);
 }
 
 header h1 {
@@ -51,7 +51,7 @@ nav a::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -5px;
+  bottom: -6px;
   width: 0;
   height: 2px;
   background: #00c6ff;
@@ -63,13 +63,13 @@ nav a:hover::after {
 }
 
 /* =========================
-   HERO SECTION
+   HERO SECTION (ROBOTICS)
 ========================= */
 .hero {
   min-height: 90vh;
   background:
-    linear-gradient(rgba(13,71,161,0.88), rgba(25,118,210,0.88)),
-    url("https://images.unsplash.com/photo-1581090700227-1e37b190418e");
+    linear-gradient(rgba(13,71,161,0.9), rgba(25,118,210,0.9)),
+    url("https://images.unsplash.com/photo-1581092334651-ddf26d9c9c8c");
   background-size: cover;
   background-position: center;
   color: white;
@@ -79,7 +79,7 @@ nav a:hover::after {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  animation: fadeIn 1.2s ease;
+  animation: fadeIn 1.3s ease;
 }
 
 .hero h2 {
@@ -88,16 +88,16 @@ nav a:hover::after {
 }
 
 .hero p {
-  max-width: 650px;
-  font-size: 1.1rem;
+  max-width: 700px;
+  font-size: 1.15rem;
   opacity: 0.95;
 }
 
 /* =========================
-   NEON BUTTON (CTA)
+   NEON CTA BUTTON
 ========================= */
 .btn {
-  margin-top: 30px;
+  margin-top: 32px;
   padding: 15px 42px;
   background: linear-gradient(135deg, #00c6ff, #1976d2);
   color: white;
@@ -105,15 +105,17 @@ nav a:hover::after {
   font-weight: 600;
   text-decoration: none;
   letter-spacing: 0.6px;
-  box-shadow: 0 0 15px rgba(0,198,255,0.6),
-              0 0 30px rgba(0,198,255,0.3);
+  box-shadow:
+    0 0 18px rgba(0,198,255,0.7),
+    0 0 40px rgba(0,198,255,0.4);
   transition: all 0.3s ease;
 }
 
 .btn:hover {
-  transform: translateY(-5px) scale(1.04);
-  box-shadow: 0 0 25px rgba(0,198,255,0.8),
-              0 0 50px rgba(0,198,255,0.6);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow:
+    0 0 28px rgba(0,198,255,0.9),
+    0 0 60px rgba(0,198,255,0.7);
 }
 
 /* =========================
