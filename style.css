@@ -16,6 +16,7 @@ body {
   background: #f4f8fc;
   color: #222;
   line-height: 1.6;
+  transition: background 0.3s, color 0.3s;
 }
 
 /* =========================
@@ -63,7 +64,7 @@ nav a:hover::after {
 }
 
 /* =========================
-   HERO SECTION (ROBOTICS)
+   HERO SECTION
 ========================= */
 .hero {
   min-height: 90vh;
@@ -94,7 +95,7 @@ nav a:hover::after {
 }
 
 /* =========================
-   NEON CTA BUTTON
+   BUTTONS
 ========================= */
 .btn {
   margin-top: 32px;
@@ -113,128 +114,10 @@ nav a:hover::after {
 
 .btn:hover {
   transform: translateY(-5px) scale(1.05);
-  box-shadow:
-    0 0 28px rgba(0,198,255,0.9),
-    0 0 60px rgba(0,198,255,0.7);
 }
 
 /* =========================
-   SERVICES SECTION
-========================= */
-.services {
-  padding: 80px 40px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 35px;
-}
-
-.service-card {
-  background: rgba(255,255,255,0.97);
-  padding: 40px 30px;
-  border-radius: 20px;
-  text-align: center;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-  position: relative;
-  overflow: hidden;
-  transition: all 0.35s ease;
-}
-
-.service-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg,#00c6ff,#1976d2);
-  opacity: 0;
-  transition: 0.3s;
-}
-
-.service-card:hover::before {
-  opacity: 0.08;
-}
-
-.service-card:hover {
-  transform: translateY(-12px);
-}
-
-.service-card h3 {
-  margin-bottom: 15px;
-  color: #0d47a1;
-}
-
-/* =========================
-   YOUTUBE SECTION
-========================= */
-.youtube {
-  background: white;
-  margin: -100px auto 80px;
-  padding: 50px 35px;
-  width: 92%;
-  max-width: 1050px;
-  border-radius: 20px;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.18);
-  text-align: center;
-}
-
-.youtube h2 {
-  margin-bottom: 25px;
-  color: #0d47a1;
-}
-
-.youtube iframe {
-  width: 100%;
-  max-width: 900px;
-  height: 480px;
-  border-radius: 15px;
-  border: none;
-}
-
-/* =========================
-   CTA SECTION
-========================= */
-.cta {
-  background: linear-gradient(135deg, #0d47a1, #1976d2);
-  color: white;
-  text-align: center;
-  padding: 80px 30px;
-}
-
-.cta h2 {
-  font-size: 2.3rem;
-  margin-bottom: 10px;
-}
-
-.cta p {
-  opacity: 0.9;
-  margin-bottom: 25px;
-}
-
-/* =========================
-   CONTACT CARDS
-========================= */
-.contact {
-  display: flex;
-  gap: 30px;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 50px;
-}
-
-.contact-card {
-  background: white;
-  width: 260px;
-  padding: 25px;
-  border-radius: 18px;
-  text-align: center;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.12);
-  transition: 0.3s;
-}
-
-.contact-card:hover {
-  transform: translateY(-8px);
-}
-
-/* =========================
-   WHATSAPP FLOATING BUTTON
+   WHATSAPP FLOAT
 ========================= */
 .whatsapp {
   position: fixed;
@@ -262,17 +145,149 @@ footer {
 }
 
 /* =========================
+   CONTACT PAGE – CENTERED + BG ANIMATION
+========================= */
+.contact-advanced{
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  overflow: hidden;
+}
+
+/* BACKGROUND ANIMATION */
+.contact-bg{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.15;
+  z-index: 1;
+}
+
+.contact-bg lottie-player{
+  width: 600px;
+  height: 600px;
+}
+
+/* CONTACT CARD */
+.contact-card{
+  position: relative;
+  z-index: 2;
+  background: white;
+  padding: 50px 45px;
+  border-radius: 26px;
+  max-width: 460px;
+  width: 100%;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.18);
+  transition: background 0.3s, color 0.3s;
+}
+
+.subtext{
+  opacity: 0.75;
+  margin-bottom: 30px;
+}
+
+/* FLOATING LABEL FIELDS */
+.field{
+  position: relative;
+  margin-bottom: 22px;
+}
+
+.field input,
+.field textarea{
+  width: 100%;
+  padding: 16px 18px;
+  border-radius: 14px;
+  border: 2px solid #ddd;
+  font-size: 1rem;
+  background: white;
+  outline: none;
+  transition: 0.3s;
+}
+
+.field label{
+  position: absolute;
+  top: 50%;
+  left: 18px;
+  transform: translateY(-50%);
+  font-size: 0.9rem;
+  color: #777;
+  background: white;
+  padding: 0 6px;
+  pointer-events: none;
+  transition: 0.3s;
+}
+
+.field input:focus + label,
+.field textarea:focus + label,
+.field input:valid + label,
+.field textarea:valid + label{
+  top: -8px;
+  font-size: 0.75rem;
+  color: #00c6ff;
+}
+
+.field input:focus,
+.field textarea:focus{
+  border-color: #00c6ff;
+  box-shadow: 0 0 15px rgba(0,198,255,0.6);
+}
+
+.field.textarea textarea{
+  min-height: 120px;
+  resize: none;
+}
+
+.full-btn{
+  width: 100%;
+}
+
+.success-message{
+  display: none;
+  margin-top: 20px;
+  text-align: center;
+  font-weight: 600;
+  color: #2e7d32;
+}
+
+/* =========================
+   🌙 DARK MODE
+========================= */
+body.dark{
+  background: #0e0e0e;
+  color: #eee;
+}
+
+body.dark .contact-card{
+  background: #1b1b1b;
+}
+
+body.dark .field input,
+body.dark .field textarea{
+  background: #111;
+  color: white;
+  border-color: #333;
+}
+
+body.dark .field label{
+  background: #1b1b1b;
+  color: #aaa;
+}
+
+body.dark .contact-bg{
+  opacity: 0.12;
+}
+
+/* =========================
    ANIMATIONS
 ========================= */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: none; }
 }
 
 /* =========================
@@ -282,163 +297,5 @@ footer {
   header {
     flex-direction: column;
     text-align: center;
-  }
-
-  nav {
-    margin-top: 10px;
-  }
-
-  .hero h2 {
-    font-size: 2.2rem;
-  }
-
-  .youtube iframe {
-    height: 260px;
-  }
-}
-/* =========================
-   ADVANCED CONTACT PAGE (FINAL)
-========================= */
-.contact-advanced{
-  min-height:90vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:60px;
-  padding:60px 40px;
-  background:#f4f8fc;
-  transition:background 0.3s;
-}
-
-/* CONTACT CARD */
-.contact-card{
-  background:white;
-  padding:50px 45px;
-  border-radius:26px;
-  max-width:460px;
-  width:100%;
-  box-shadow:0 40px 80px rgba(0,0,0,0.18);
-  transition:background 0.3s,color 0.3s;
-}
-
-.subtext{
-  opacity:0.75;
-  margin-bottom:30px;
-}
-
-/* FLOATING LABEL FIELDS */
-.field{
-  position:relative;
-  margin-bottom:22px;
-}
-
-.field input,
-.field textarea{
-  width:100%;
-  padding:16px 18px;
-  border-radius:14px;
-  border:2px solid #ddd;
-  font-size:1rem;
-  background:white;
-  color:#222;
-  outline:none;
-  transition:0.3s;
-}
-
-.field label{
-  position:absolute;
-  top:50%;
-  left:18px;
-  transform:translateY(-50%);
-  font-size:0.9rem;
-  color:#777;
-  background:white;
-  padding:0 6px;
-  pointer-events:none;
-  transition:0.3s;
-}
-
-.field input:focus + label,
-.field textarea:focus + label,
-.field input:valid + label,
-.field textarea:valid + label{
-  top:-8px;
-  font-size:0.75rem;
-  color:#00c6ff;
-}
-
-.field input:focus,
-.field textarea:focus{
-  border-color:#00c6ff;
-  box-shadow:0 0 15px rgba(0,198,255,0.6);
-}
-
-.field.textarea textarea{
-  min-height:120px;
-  resize:none;
-}
-
-/* BUTTON */
-.full-btn{
-  width:100%;
-  margin-top:10px;
-}
-
-/* SUCCESS MESSAGE */
-.success-message{
-  display:none;
-  margin-top:20px;
-  text-align:center;
-  font-weight:600;
-  color:#2e7d32;
-}
-
-/* LOTTIE */
-.contact-lottie{
-  max-width:520px;
-}
-
-.contact-lottie lottie-player{
-  width:100%;
-  height:400px;
-}
-
-/* =========================
-   🌙 DARK MODE (FIXED)
-========================= */
-body.dark{
-  background:#0e0e0e;
-  color:#eee;
-}
-
-body.dark .contact-advanced{
-  background:#0e0e0e;
-}
-
-body.dark .contact-card{
-  background:#1b1b1b;
-  color:#eee;
-}
-
-body.dark .field input,
-body.dark .field textarea{
-  background:#111;
-  color:white;
-  border-color:#333;
-}
-
-body.dark .field label{
-  background:#1b1b1b;
-  color:#aaa;
-}
-
-body.dark .success-message{
-  color:#6cff9c;
-}
-
-/* RESPONSIVE */
-@media(max-width:900px){
-  .contact-advanced{
-    flex-direction:column;
   }
 }
