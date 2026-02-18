@@ -54,18 +54,20 @@ nav a:hover{opacity:0.8}
 
 /* BUTTON */
 .btn{
-  margin-top:20px;
-  padding:12px 25px;
-  background:#1976d2;
-  color:white;
+  margin-top:25px;
+  padding:14px 32px;
+  background:white;
+  color:#0d47a1;
   border-radius:30px;
+  font-weight:600;
   text-decoration:none;
   transition:0.3s;
 }
 .btn:hover{
-  box-shadow:0 10px 25px rgba(25,118,210,.4);
-  transform:translateY(-2px);
+  transform:translateY(-3px);
+  box-shadow:0 10px 25px rgba(0,0,0,.3);
 }
+
 
 /* PROJECTS */
 .grid{
