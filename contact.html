@@ -3,19 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>Contact Us | GAGAN ELECTRONIC LABS</title>
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Contact Gagan Electronic Labs for 3D printing and electronics projects">
 
   <link rel="stylesheet" href="style.css">
-  <script defer src="script.js"></script>
-
-  <!-- Lottie -->
-  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
 
-<!-- HEADER -->
 <header>
   <h1>GAGAN ELECTRONIC LABS</h1>
   <nav>
@@ -24,74 +17,53 @@
     <a href="customize.html">Customize</a>
     <a href="contact.html">Contact</a>
   </nav>
-  <button id="darkToggle">🌙</button>
 </header>
 
-<!-- CONTACT SECTION -->
-<section class="contact-advanced">
+<section class="contact-page">
 
-  <!-- BACKGROUND ANIMATION -->
-  <div class="contact-bg">
-    <lottie-player
-      src="https://assets2.lottiefiles.com/packages/lf20_u25cckyh.json"
-      background="transparent"
-      speed="1"
-      loop
-      autoplay>
-    </lottie-player>
-  </div>
-
-  <!-- CONTACT CARD -->
-  <div class="contact-card">
-
+  <!-- LEFT: CONTACT FORM -->
+  <div class="contact-form-box">
     <h2>Contact Us</h2>
-    <p class="subtext">Have a question or project idea? Let’s talk.</p>
+    <p>Have a question or project idea? Let’s talk.</p>
 
     <form
-      id="contactForm"
+      class="contact-form"
       action="https://formspree.io/f/mvzbqqry"
       method="POST"
     >
-
-      <div class="field">
-        <input type="text" name="name" required>
-        <label>Your Name</label>
-      </div>
-
-      <div class="field">
-        <input type="email" name="email" required>
-        <label>Your Email</label>
-      </div>
-
-      <div class="field textarea">
-        <textarea name="message" required></textarea>
-        <label>Your Message</label>
-      </div>
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" required></textarea>
 
       <button type="submit" class="btn full-btn">
         Send Message
       </button>
-
-      <div class="success-message">
-        ✅ Message sent successfully!
-      </div>
     </form>
 
-    <div class="contact-details">
+    <div class="contact-info">
       <p>📍 Hindupur – 515201</p>
       <p>📧 gaganelectronicslab@gmail.com</p>
       <p>📱 +91 63015 09299</p>
     </div>
-
   </div>
+
+  <!-- RIGHT: ANIMATION -->
+  <div class="contact-illustration">
+    <div class="blob"></div>
+
+    <img
+      src="https://assets.website-files.com/5e4c6e4f6c5c4e3e0c9b5b35/5f0c6c4c6e4f6c5c4e3e0c9b_contact-illustration.png"
+      alt="Contact Illustration"
+      class="illustration-img"
+    >
+  </div>
+
 </section>
 
-<!-- FOOTER -->
 <footer>
   © 2026 Gagan Electronic Labs. All Rights Reserved.
 </footer>
 
-<!-- WHATSAPP FLOAT -->
 <a href="https://wa.me/916301509299" class="whatsapp" target="_blank">💬</a>
 
 </body>
