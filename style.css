@@ -16,7 +16,6 @@ body {
   background: #f4f8fc;
   color: #222;
   line-height: 1.6;
-  transition: background 0.3s, color 0.3s;
 }
 
 /* =========================
@@ -64,56 +63,109 @@ nav a:hover::after {
 }
 
 /* =========================
-   HERO SECTION
-========================= */
-.hero {
-  min-height: 90vh;
-  background:
-    linear-gradient(rgba(13,71,161,0.9), rgba(25,118,210,0.9)),
-    url("https://images.unsplash.com/photo-1581092334651-ddf26d9c9c8c");
-  background-size: cover;
-  background-position: center;
-  color: white;
-  text-align: center;
-  padding: 60px 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  animation: fadeIn 1.3s ease;
-}
-
-.hero h2 {
-  font-size: 3rem;
-  margin-bottom: 15px;
-}
-
-.hero p {
-  max-width: 700px;
-  font-size: 1.15rem;
-  opacity: 0.95;
-}
-
-/* =========================
-   BUTTONS
+   BUTTON
 ========================= */
 .btn {
-  margin-top: 32px;
-  padding: 15px 42px;
+  display: inline-block;
+  padding: 14px 36px;
   background: linear-gradient(135deg, #00c6ff, #1976d2);
   color: white;
   border-radius: 40px;
   font-weight: 600;
   text-decoration: none;
-  letter-spacing: 0.6px;
-  box-shadow:
-    0 0 18px rgba(0,198,255,0.7),
-    0 0 40px rgba(0,198,255,0.4);
-  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .btn:hover {
-  transform: translateY(-5px) scale(1.05);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+.full-btn {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* =========================
+   CONTACT PAGE (LIKED VERSION)
+========================= */
+.contact-page {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  padding: 60px 40px;
+  background: #f4f8fc;
+}
+
+/* LEFT FORM CARD */
+.contact-form-box {
+  background: white;
+  padding: 45px 40px;
+  border-radius: 22px;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 25px 55px rgba(0,0,0,0.18);
+}
+
+.contact-form-box h2 {
+  color: #0d47a1;
+  margin-bottom: 8px;
+}
+
+.contact-form-box p {
+  margin-bottom: 25px;
+  opacity: 0.85;
+}
+
+/* FORM INPUTS */
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.contact-form textarea {
+  min-height: 120px;
+  resize: none;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #1976d2;
+  box-shadow: 0 0 10px rgba(25,118,210,0.35);
+}
+
+/* CONTACT INFO */
+.contact-info {
+  margin-top: 25px;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.contact-info p {
+  margin-bottom: 6px;
+}
+
+/* RIGHT IMAGE */
+.contact-illustration {
+  max-width: 480px;
+  width: 100%;
+}
+
+.contact-illustration img {
+  width: 100%;
+  border-radius: 22px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.2);
 }
 
 /* =========================
@@ -145,157 +197,15 @@ footer {
 }
 
 /* =========================
-   CONTACT PAGE – CENTERED + BG ANIMATION
-========================= */
-.contact-advanced{
-  position: relative;
-  min-height: 90vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 60px 20px;
-  overflow: hidden;
-}
-
-/* BACKGROUND ANIMATION */
-.contact-bg{
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0.15;
-  z-index: 1;
-}
-
-.contact-bg lottie-player{
-  width: 600px;
-  height: 600px;
-}
-
-/* CONTACT CARD */
-.contact-card{
-  position: relative;
-  z-index: 2;
-  background: white;
-  padding: 50px 45px;
-  border-radius: 26px;
-  max-width: 460px;
-  width: 100%;
-  box-shadow: 0 40px 80px rgba(0,0,0,0.18);
-  transition: background 0.3s, color 0.3s;
-}
-
-.subtext{
-  opacity: 0.75;
-  margin-bottom: 30px;
-}
-
-/* FLOATING LABEL FIELDS */
-.field{
-  position: relative;
-  margin-bottom: 22px;
-}
-
-.field input,
-.field textarea{
-  width: 100%;
-  padding: 16px 18px;
-  border-radius: 14px;
-  border: 2px solid #ddd;
-  font-size: 1rem;
-  background: white;
-  outline: none;
-  transition: 0.3s;
-}
-
-.field label{
-  position: absolute;
-  top: 50%;
-  left: 18px;
-  transform: translateY(-50%);
-  font-size: 0.9rem;
-  color: #777;
-  background: white;
-  padding: 0 6px;
-  pointer-events: none;
-  transition: 0.3s;
-}
-
-.field input:focus + label,
-.field textarea:focus + label,
-.field input:valid + label,
-.field textarea:valid + label{
-  top: -8px;
-  font-size: 0.75rem;
-  color: #00c6ff;
-}
-
-.field input:focus,
-.field textarea:focus{
-  border-color: #00c6ff;
-  box-shadow: 0 0 15px rgba(0,198,255,0.6);
-}
-
-.field.textarea textarea{
-  min-height: 120px;
-  resize: none;
-}
-
-.full-btn{
-  width: 100%;
-}
-
-.success-message{
-  display: none;
-  margin-top: 20px;
-  text-align: center;
-  font-weight: 600;
-  color: #2e7d32;
-}
-
-/* =========================
-   🌙 DARK MODE
-========================= */
-body.dark{
-  background: #0e0e0e;
-  color: #eee;
-}
-
-body.dark .contact-card{
-  background: #1b1b1b;
-}
-
-body.dark .field input,
-body.dark .field textarea{
-  background: #111;
-  color: white;
-  border-color: #333;
-}
-
-body.dark .field label{
-  background: #1b1b1b;
-  color: #aaa;
-}
-
-body.dark .contact-bg{
-  opacity: 0.12;
-}
-
-/* =========================
-   ANIMATIONS
-========================= */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: none; }
-}
-
-/* =========================
    RESPONSIVE
 ========================= */
-@media (max-width: 768px) {
-  header {
+@media (max-width: 900px) {
+  .contact-page {
     flex-direction: column;
     text-align: center;
+  }
+
+  .contact-form-box {
+    max-width: 100%;
   }
 }
