@@ -296,3 +296,74 @@ footer {
     height: 260px;
   }
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Contact Us | GAGAN ELECTRONIC LABS</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Contact Gagan Electronic Labs for 3D printing and electronics projects">
+
+<link rel="stylesheet" href="style.css">
+<script defer src="script.js"></script>
+</head>
+<body>
+
+<header>
+  <h1>GAGAN ELECTRONIC LABS</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="customize.html">Customize</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <button id="darkToggle">🌙</button>
+</header>
+
+<!-- CONTACT SECTION -->
+<section class="contact-page">
+
+  <!-- LEFT: FORM -->
+  <div class="contact-form-box">
+    <h2>Contact Us</h2>
+    <p>Have a question or project idea? Let’s talk.</p>
+
+    <form
+      action="https://formspree.io/f/mvzbqqry"
+      method="POST"
+      class="contact-form"
+    >
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" required></textarea>
+
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+
+    <div class="contact-info">
+      <p>📍 Hindupur – 515201</p>
+      <p>📧 gaganelectronicslab@gmail.com</p>
+      <p>📱 +91 63015 09299</p>
+    </div>
+  </div>
+
+  <!-- RIGHT: ILLUSTRATION -->
+  <div class="contact-illustration">
+    <img
+      src="https://images.unsplash.com/photo-1581092334651-ddf26d9c9c8c"
+      alt="Electronics Lab"
+    >
+  </div>
+
+</section>
+
+<footer>
+  © 2026 Gagan Electronic Labs. All Rights Reserved.
+</footer>
+
+<!-- WhatsApp Floating -->
+<a href="https://wa.me/916301509299" class="whatsapp" target="_blank">💬</a>
+
+</body>
+</html>
