@@ -296,74 +296,98 @@ footer {
     height: 260px;
   }
 }
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Contact Us | GAGAN ELECTRONIC LABS</title>
+/* =========================
+   CONTACT PAGE (SPLIT UI)
+========================= */
+.contact-page{
+  min-height:90vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:60px 40px;
+  background:#f4f8fc;
+  gap:40px;
+}
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Contact Gagan Electronic Labs for 3D printing and electronics projects">
+/* LEFT FORM BOX */
+.contact-form-box{
+  background:white;
+  padding:45px 40px;
+  border-radius:22px;
+  max-width:450px;
+  width:100%;
+  box-shadow:0 30px 60px rgba(0,0,0,0.15);
+}
 
-<link rel="stylesheet" href="style.css">
-<script defer src="script.js"></script>
-</head>
-<body>
+.contact-form-box h2{
+  color:#0d47a1;
+  margin-bottom:10px;
+}
 
-<header>
-  <h1>GAGAN ELECTRONIC LABS</h1>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="projects.html">Projects</a>
-    <a href="customize.html">Customize</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-  <button id="darkToggle">🌙</button>
-</header>
+.contact-form-box p{
+  margin-bottom:25px;
+  opacity:0.85;
+}
 
-<!-- CONTACT SECTION -->
-<section class="contact-page">
+/* FORM */
+.contact-form input,
+.contact-form textarea{
+  width:100%;
+  padding:14px;
+  margin-bottom:15px;
+  border-radius:12px;
+  border:1px solid #ccc;
+  font-size:1rem;
+}
 
-  <!-- LEFT: FORM -->
-  <div class="contact-form-box">
-    <h2>Contact Us</h2>
-    <p>Have a question or project idea? Let’s talk.</p>
+.contact-form textarea{
+  min-height:120px;
+  resize:none;
+}
 
-    <form
-      action="https://formspree.io/f/mvzbqqry"
-      method="POST"
-      class="contact-form"
-    >
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" placeholder="Your Message" required></textarea>
+.contact-form input:focus,
+.contact-form textarea:focus{
+  outline:none;
+  border-color:#1976d2;
+  box-shadow:0 0 10px rgba(25,118,210,0.4);
+}
 
-      <button type="submit" class="btn">Send Message</button>
-    </form>
+/* INFO BELOW FORM */
+.contact-info{
+  margin-top:25px;
+  font-size:0.95rem;
+  opacity:0.9;
+}
 
-    <div class="contact-info">
-      <p>📍 Hindupur – 515201</p>
-      <p>📧 gaganelectronicslab@gmail.com</p>
-      <p>📱 +91 63015 09299</p>
-    </div>
-  </div>
+/* RIGHT ILLUSTRATION */
+.contact-illustration{
+  max-width:500px;
+  width:100%;
+}
 
-  <!-- RIGHT: ILLUSTRATION -->
-  <div class="contact-illustration">
-    <img
-      src="https://images.unsplash.com/photo-1581092334651-ddf26d9c9c8c"
-      alt="Electronics Lab"
-    >
-  </div>
+.contact-illustration img{
+  width:100%;
+  border-radius:22px;
+  box-shadow:0 30px 60px rgba(0,0,0,0.2);
+}
 
-</section>
+/* DARK MODE SUPPORT */
+body.dark .contact-form-box{
+  background:#1b1b1b;
+  color:#eee;
+}
 
-<footer>
-  © 2026 Gagan Electronic Labs. All Rights Reserved.
-</footer>
+body.dark .contact-form input,
+body.dark .contact-form textarea{
+  background:#111;
+  color:white;
+  border:1px solid #333;
+}
 
-<!-- WhatsApp Floating -->
-<a href="https://wa.me/916301509299" class="whatsapp" target="_blank">💬</a>
+/* RESPONSIVE */
+@media(max-width:900px){
+  .contact-page{
+    flex-direction:column;
+  }
+}
 
-</body>
-</html>
