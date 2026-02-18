@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Contact Us | GAGAN ELECTRONIC LABS</title>
+  <meta charset="UTF-8">
+  <title>Contact Us | GAGAN ELECTRONIC LABS</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Contact Gagan Electronic Labs for 3D printing and electronics projects">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Gagan Electronic Labs for 3D printing and electronics projects">
 
-<link rel="stylesheet" href="style.css">
-<script defer src="script.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
 
-<!-- Lottie Player -->
-<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <!-- Lottie -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
 
+<!-- HEADER -->
 <header>
   <h1>GAGAN ELECTRONIC LABS</h1>
   <nav>
@@ -26,9 +27,21 @@
   <button id="darkToggle">🌙</button>
 </header>
 
+<!-- CONTACT SECTION -->
 <section class="contact-advanced">
 
-  <!-- FORM CARD -->
+  <!-- BACKGROUND ANIMATION -->
+  <div class="contact-bg">
+    <lottie-player
+      src="https://assets2.lottiefiles.com/packages/lf20_u25cckyh.json"
+      background="transparent"
+      speed="1"
+      loop
+      autoplay>
+    </lottie-player>
+  </div>
+
+  <!-- CONTACT CARD -->
   <div class="contact-card">
 
     <h2>Contact Us</h2>
@@ -38,7 +51,6 @@
       id="contactForm"
       action="https://formspree.io/f/mvzbqqry"
       method="POST"
-      class="advanced-form"
     >
 
       <div class="field">
@@ -60,11 +72,9 @@
         Send Message
       </button>
 
-      <!-- SUCCESS MESSAGE -->
       <div class="success-message">
         ✅ Message sent successfully!
       </div>
-
     </form>
 
     <div class="contact-details">
@@ -74,24 +84,14 @@
     </div>
 
   </div>
-
-  <!-- LOTTIE ANIMATION -->
-  <div class="contact-lottie">
-    <lottie-player
-      src="https://assets2.lottiefiles.com/packages/lf20_u25cckyh.json"
-      background="transparent"
-      speed="1"
-      loop
-      autoplay>
-    </lottie-player>
-  </div>
-
 </section>
 
+<!-- FOOTER -->
 <footer>
   © 2026 Gagan Electronic Labs. All Rights Reserved.
 </footer>
 
+<!-- WHATSAPP FLOAT -->
 <a href="https://wa.me/916301509299" class="whatsapp" target="_blank">💬</a>
 
 </body>
