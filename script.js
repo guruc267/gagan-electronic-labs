@@ -12,3 +12,8 @@ function validateForm(){
   }
   return true;
 }
+// Navbar shadow on scroll
+window.addEventListener("scroll",()=>{
+  document.querySelector("header").style.boxShadow =
+    window.scrollY > 20 ? "0 5px 15px rgba(0,0,0,.2)" : "none";
+});
