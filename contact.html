@@ -9,6 +9,9 @@
 
 <link rel="stylesheet" href="style.css">
 <script defer src="script.js"></script>
+
+<!-- Lottie Player -->
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
 
@@ -23,38 +26,45 @@
   <button id="darkToggle">🌙</button>
 </header>
 
-<section class="contact-modern">
+<section class="contact-advanced">
 
-  <!-- LEFT FORM CARD -->
+  <!-- FORM CARD -->
   <div class="contact-card">
 
     <h2>Contact Us</h2>
     <p class="subtext">Have a question or project idea? Let’s talk.</p>
 
     <form
+      id="contactForm"
       action="https://formspree.io/f/mvzbqqry"
       method="POST"
-      class="modern-form"
+      class="advanced-form"
     >
 
-      <div class="input-group">
-        <span>👤</span>
-        <input type="text" name="name" placeholder="Your Name" required>
+      <div class="field">
+        <input type="text" name="name" required>
+        <label>Your Name</label>
       </div>
 
-      <div class="input-group">
-        <span>📧</span>
-        <input type="email" name="email" placeholder="Your Email" required>
+      <div class="field">
+        <input type="email" name="email" required>
+        <label>Your Email</label>
       </div>
 
-      <div class="input-group textarea">
-        <span>💬</span>
-        <textarea name="message" placeholder="Your Message" required></textarea>
+      <div class="field textarea">
+        <textarea name="message" required></textarea>
+        <label>Your Message</label>
       </div>
 
       <button type="submit" class="btn full-btn">
         Send Message
       </button>
+
+      <!-- SUCCESS MESSAGE -->
+      <div class="success-message">
+        ✅ Message sent successfully!
+      </div>
+
     </form>
 
     <div class="contact-details">
@@ -65,9 +75,15 @@
 
   </div>
 
-  <!-- RIGHT SIDE VISUAL -->
-  <div class="contact-visual">
-    <img src="https://images.unsplash.com/photo-1581092334651-ddf26d9c9c8c" alt="Electronics Lab">
+  <!-- LOTTIE ANIMATION -->
+  <div class="contact-lottie">
+    <lottie-player
+      src="https://assets2.lottiefiles.com/packages/lf20_u25cckyh.json"
+      background="transparent"
+      speed="1"
+      loop
+      autoplay>
+    </lottie-player>
   </div>
 
 </section>
