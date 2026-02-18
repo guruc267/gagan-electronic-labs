@@ -17,3 +17,22 @@ window.addEventListener("scroll",()=>{
   document.querySelector("header").style.boxShadow =
     window.scrollY > 20 ? "0 5px 15px rgba(0,0,0,.2)" : "none";
 });
+const toggle = document.getElementById("darkToggle");
+
+// Load saved theme
+if(localStorage.theme === "dark"){
+  document.body.classList.add("dark");
+  toggle.textContent = "☀️";
+}
+
+toggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+
+  if(document.body.classList.contains("dark")){
+    localStorage.theme = "dark";
+    toggle.textContent = "☀️";
+  } else {
+    localStorage.theme = "light";
+    toggle.textContent = "🌙";
+  }
+});
