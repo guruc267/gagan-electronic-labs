@@ -23,39 +23,51 @@
   <button id="darkToggle">🌙</button>
 </header>
 
-<!-- CONTACT SECTION -->
-<section class="contact-page">
+<section class="contact-modern">
 
-  <!-- LEFT: FORM -->
-  <div class="contact-form-box">
+  <!-- LEFT FORM CARD -->
+  <div class="contact-card">
+
     <h2>Contact Us</h2>
-    <p>Have a question or project idea? Let’s talk.</p>
+    <p class="subtext">Have a question or project idea? Let’s talk.</p>
 
     <form
       action="https://formspree.io/f/mvzbqqry"
       method="POST"
-      class="contact-form"
+      class="modern-form"
     >
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" placeholder="Your Message" required></textarea>
 
-      <button type="submit" class="btn">Send Message</button>
+      <div class="input-group">
+        <span>👤</span>
+        <input type="text" name="name" placeholder="Your Name" required>
+      </div>
+
+      <div class="input-group">
+        <span>📧</span>
+        <input type="email" name="email" placeholder="Your Email" required>
+      </div>
+
+      <div class="input-group textarea">
+        <span>💬</span>
+        <textarea name="message" placeholder="Your Message" required></textarea>
+      </div>
+
+      <button type="submit" class="btn full-btn">
+        Send Message
+      </button>
     </form>
 
-    <div class="contact-info">
+    <div class="contact-details">
       <p>📍 Hindupur – 515201</p>
       <p>📧 gaganelectronicslab@gmail.com</p>
       <p>📱 +91 63015 09299</p>
     </div>
+
   </div>
 
-  <!-- RIGHT: ILLUSTRATION -->
-  <div class="contact-illustration">
-    <img
-      src="https://images.unsplash.com/photo-1581092334651-ddf26d9c9c8c"
-      alt="Electronics Lab"
-    >
+  <!-- RIGHT SIDE VISUAL -->
+  <div class="contact-visual">
+    <img src="https://images.unsplash.com/photo-1581092334651-ddf26d9c9c8c" alt="Electronics Lab">
   </div>
 
 </section>
@@ -64,7 +76,6 @@
   © 2026 Gagan Electronic Labs. All Rights Reserved.
 </footer>
 
-<!-- WhatsApp Floating -->
 <a href="https://wa.me/916301509299" class="whatsapp" target="_blank">💬</a>
 
 </body>
