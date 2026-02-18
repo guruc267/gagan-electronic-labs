@@ -36,3 +36,15 @@ toggle.addEventListener("click", () => {
     toggle.textContent = "🌙";
   }
 });
+// Success animation after submit
+const form = document.getElementById("contactForm");
+
+if(form){
+  form.addEventListener("submit", () => {
+    setTimeout(() => {
+      document.querySelector(".success-message").style.display = "block";
+      form.reset();
+    }, 1000);
+  });
+}
+
