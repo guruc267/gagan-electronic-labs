@@ -1,160 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Contact Us | GAGAN ELECTRONIC LABS</title>
+  <meta charset="UTF-8">
+  <title>Contact Us | GAGAN ELECTRONIC LABS</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Contact Gagan Electronic Labs for 3D printing and electronics projects">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Gagan Electronic Labs for 3D printing and electronics projects">
 
-<link rel="stylesheet" href="style.css">
-<script defer src="script.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
 
-<!-- Lottie -->
-<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-
-<style>
-/* ===== Animated Gradient Background ===== */
-.contact-advanced{
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  padding:80px 20px;
-  background:linear-gradient(270deg,#0d47a1,#1976d2,#00c6ff);
-  background-size:600% 600%;
-  animation:gradientMove 12s ease infinite;
-  position:relative;
-  overflow:hidden;
-}
-
-@keyframes gradientMove{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
-}
-
-/* ===== Background Lottie ===== */
-.contact-bg{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  opacity:0.15;
-  z-index:1;
-}
-
-/* ===== Glassmorphism Card ===== */
-.contact-card{
-  position:relative;
-  z-index:2;
-  width:100%;
-  max-width:460px;
-  padding:45px;
-  border-radius:28px;
-  background:rgba(255,255,255,0.25);
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-  box-shadow:0 40px 80px rgba(0,0,0,0.35);
-  color:white;
-}
-
-.contact-card h2{
-  margin-bottom:5px;
-}
-
-.subtext{
-  opacity:0.9;
-  margin-bottom:25px;
-}
-
-/* ===== Multi-step Form ===== */
-.step{
-  display:none;
-}
-
-.step.active{
-  display:block;
-}
-
-.field{
-  position:relative;
-  margin-bottom:20px;
-}
-
-.field input,
-.field textarea{
-  width:100%;
-  padding:16px;
-  border-radius:14px;
-  border:none;
-  outline:none;
-  font-size:1rem;
-}
-
-.field textarea{
-  resize:none;
-  min-height:120px;
-}
-
-.buttons{
-  display:flex;
-  justify-content:space-between;
-  margin-top:10px;
-}
-
-.buttons button{
-  padding:12px 26px;
-  border:none;
-  border-radius:30px;
-  font-weight:600;
-  cursor:pointer;
-}
-
-.next-btn{
-  background:#00c6ff;
-  color:#003;
-}
-
-.back-btn{
-  background:rgba(255,255,255,0.4);
-  color:white;
-}
-
-.submit-btn{
-  width:100%;
-  background:#00ffcc;
-  color:#003;
-}
-
-/* ===== Map ===== */
-.map{
-  margin-top:50px;
-  width:90%;
-  max-width:900px;
-  border-radius:20px;
-  overflow:hidden;
-  box-shadow:0 30px 60px rgba(0,0,0,0.3);
-}
-
-iframe{
-  width:100%;
-  height:350px;
-  border:0;
-}
-
-/* ===== Dark Mode ===== */
-body.dark .contact-card{
-  background:rgba(0,0,0,0.35);
-  color:#fff;
-}
-</style>
+  <!-- Lottie -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
-
 <body>
 
+<!-- HEADER -->
 <header>
   <h1>GAGAN ELECTRONIC LABS</h1>
   <nav>
@@ -166,9 +27,10 @@ body.dark .contact-card{
   <button id="darkToggle">🌙</button>
 </header>
 
+<!-- CONTACT SECTION -->
 <section class="contact-advanced">
 
-  <!-- LOTTIE BACKGROUND -->
+  <!-- BACKGROUND ANIMATION -->
   <div class="contact-bg">
     <lottie-player
       src="https://assets2.lottiefiles.com/packages/lf20_u25cckyh.json"
@@ -179,74 +41,58 @@ body.dark .contact-card{
     </lottie-player>
   </div>
 
-  <!-- GLASS CARD -->
+  <!-- CONTACT CARD -->
   <div class="contact-card">
+
     <h2>Contact Us</h2>
-    <p class="subtext">Tell us about your project</p>
+    <p class="subtext">Have a question or project idea? Let’s talk.</p>
 
-    <form action="https://formspree.io/f/mvzbqqry" method="POST" id="multiForm">
+    <form
+      id="contactForm"
+      action="https://formspree.io/f/mvzbqqry"
+      method="POST"
+    >
 
-      <!-- STEP 1 -->
-      <div class="step active">
-        <div class="field">
-          <input type="text" name="name" placeholder="Your Name" required>
-        </div>
-        <div class="field">
-          <input type="email" name="email" placeholder="Your Email" required>
-        </div>
-        <div class="buttons">
-          <span></span>
-          <button type="button" class="next-btn" onclick="nextStep()">Next</button>
-        </div>
+      <div class="field">
+        <input type="text" name="name" required>
+        <label>Your Name</label>
       </div>
 
-      <!-- STEP 2 -->
-      <div class="step">
-        <div class="field">
-          <textarea name="message" placeholder="Describe your project..." required></textarea>
-        </div>
-        <div class="buttons">
-          <button type="button" class="back-btn" onclick="prevStep()">Back</button>
-          <button type="submit" class="submit-btn">Send Message</button>
-        </div>
+      <div class="field">
+        <input type="email" name="email" required>
+        <label>Your Email</label>
       </div>
 
+      <div class="field textarea">
+        <textarea name="message" required></textarea>
+        <label>Your Message</label>
+      </div>
+
+      <button type="submit" class="btn full-btn">
+        Send Message
+      </button>
+
+      <div class="success-message">
+        ✅ Message sent successfully!
+      </div>
     </form>
-  </div>
 
-  <!-- MAP -->
-  <div class="map">
-    <iframe
-      src="https://www.google.com/maps?q=Hindupur%20515201&output=embed">
-    </iframe>
-  </div>
+    <div class="contact-details">
+      <p>📍 Hindupur – 515201</p>
+      <p>📧 gaganelectronicslab@gmail.com</p>
+      <p>📱 +91 63015 09299</p>
+    </div>
 
+  </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   © 2026 Gagan Electronic Labs. All Rights Reserved.
 </footer>
 
+<!-- WHATSAPP FLOAT -->
 <a href="https://wa.me/916301509299" class="whatsapp" target="_blank">💬</a>
-
-<script>
-let currentStep = 0;
-const steps = document.querySelectorAll(".step");
-
-function showStep(i){
-  steps.forEach((s,idx)=>s.classList.toggle("active",idx===i));
-}
-
-function nextStep(){
-  currentStep=1;
-  showStep(currentStep);
-}
-
-function prevStep(){
-  currentStep=0;
-  showStep(currentStep);
-}
-</script>
 
 </body>
 </html>
