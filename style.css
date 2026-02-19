@@ -409,3 +409,118 @@ footer {
     height: 260px;
   }
 }
+/* =========================
+   COST ESTIMATOR UI UPGRADE
+========================= */
+
+/* Form spacing */
+.custom-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Inputs & Select */
+.custom-form input,
+.custom-form select,
+.custom-form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1.8px solid #d0d7e2;
+  font-size: 0.95rem;
+  transition: 0.25s;
+  background: #f9fbff;
+}
+
+.custom-form input:focus,
+.custom-form select:focus,
+.custom-form textarea:focus {
+  outline: none;
+  border-color: #1976d2;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(25,118,210,0.15);
+}
+
+/* Upload box */
+.upload-box {
+  background: #f4f8ff;
+  border: 2px dashed #b6c8ea;
+  border-radius: 16px;
+  padding: 16px;
+  text-align: center;
+}
+
+.upload-box label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.upload-box small {
+  display: block;
+  margin-top: 6px;
+  opacity: 0.7;
+}
+
+/* Gram calculator row */
+.calc-box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.calc-box span {
+  font-size: 0.85rem;
+  color: #1976d2;
+  font-weight: 500;
+}
+
+/* Fixed price block */
+.fixed-cost {
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+  padding: 14px 16px;
+  border-radius: 14px;
+  text-align: center;
+}
+
+.fixed-cost strong {
+  display: block;
+  font-size: 0.95rem;
+}
+
+.fixed-cost p {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #0d47a1;
+}
+
+/* =========================
+   ESTIMATED PRICE HIGHLIGHT
+========================= */
+.price-box {
+  margin-top: 10px;
+  background: linear-gradient(135deg, #0d47a1, #1976d2);
+  color: white;
+  padding: 16px 20px;
+  border-radius: 16px;
+  text-align: center;
+  font-size: 1.05rem;
+  font-weight: 600;
+  box-shadow: 0 12px 30px rgba(13,71,161,0.35);
+}
+
+.price-box span {
+  display: block;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-top: 4px;
+  letter-spacing: 0.5px;
+}
+
+/* Button polish */
+.customize-card .btn {
+  margin-top: 10px;
+  padding: 16px;
+  font-size: 1.05rem;
+}
