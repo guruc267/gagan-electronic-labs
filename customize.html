@@ -29,20 +29,19 @@
   <!-- LEFT : FORM CARD -->
   <div class="customize-card">
     <h2>Instant Project Cost Estimator</h2>
-    <p class="subtitle">
-      Get a quick estimate before submitting your project.
-    </p>
+    <p class="subtitle">Get a quick estimate before submitting your project.</p>
 
-    <!-- FORM -->
-    <form class="custom-form" id="customForm">
+    <!-- ✅ FIXED FORM -->
+    <form
+      id="customizeForm"
+      class="custom-form"
+      action="https://formspree.io/f/mqedljpp"
+      method="POST"
+      enctype="multipart/form-data"
+    >
 
       <!-- EMAIL -->
-      <input
-        type="email"
-        name="email"
-        placeholder="Your Email"
-        required
-      >
+      <input type="email" name="email" placeholder="Your Email" required>
 
       <!-- PROJECT TYPE -->
       <select
@@ -64,10 +63,9 @@
         <label>Upload Design Files</label>
         <input
           type="file"
-          id="designFiles"
+          name="design_files"
           accept=".stl,.step,.pdf"
           multiple
-          required
         >
         <small>Accepted formats: STL, STEP, PDF</small>
       </div>
@@ -84,7 +82,7 @@
         <span>₹10 / gram + ₹50 service charge</span>
       </div>
 
-      <!-- FIXED PRICE -->
+      <!-- FIXED COST -->
       <div class="fixed-cost" id="fixedCostBox" style="display:none;">
         <strong>Average Project Cost</strong>
         <p>₹1500 – ₹3000 (final cost after review)</p>
@@ -96,9 +94,13 @@
         <span>₹<span id="totalCost">0</span></span>
       </div>
 
-      <!-- HIDDEN FIELDS -->
-      <input type="hidden" name="estimated_cost" id="estimatedCostField" value="₹0">
-      <input type="hidden" name="drive_links" id="driveLinks">
+      <!-- HIDDEN FIELD -->
+      <input
+        type="hidden"
+        name="estimated_cost"
+        id="estimatedCostField"
+        value="₹0"
+      >
 
       <button type="submit" class="btn full-btn">
         Submit Project Request
@@ -127,11 +129,8 @@
 
 <a href="https://wa.me/916301509299" class="whatsapp" target="_blank">💬</a>
 
-<!-- ================= SCRIPT ================= -->
+<!-- ================= PAGE SCRIPT ================= -->
 <script>
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyg4xUJHoq0rLgCaVs7ENEtWmTdMaTXCxh585suuHdl2BQE5Eugz_9fd8qhn8CMkoY5bQ/exec";
-const FORMSPREE_URL = "https://formspree.io/f/mqedljpp";
-
 function handleProjectType() {
   const type = document.getElementById("projectType").value;
   const gramsBox = document.getElementById("gramsBox");
@@ -164,48 +163,14 @@ function calculateCost() {
   document.getElementById("estimatedCostField").value = "₹" + cost;
 }
 
-document.getElementById("customForm").addEventListener("submit", async function (e) {
-  e.preventDefault();
-
-  const files = document.getElementById("designFiles").files;
-  let payload = [];
-
-  for (let file of files) {
-    const base64 = await toBase64(file);
-    payload.push({
-      name: file.name,
-      type: file.type,
-      data: base64.split(",")[1]
-    });
-  }
-
-  const res = await fetch(SCRIPT_URL, {
-    method: "POST",
-    body: JSON.stringify({ files: payload })
+/* ✅ SAFETY: ensure cost is sent */
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("customizeForm");
+  form.addEventListener("submit", () => {
+    document.getElementById("estimatedCostField").value =
+      "₹" + document.getElementById("totalCost").innerText;
   });
-
-  const result = await res.json();
-
-  if (!result.success) {
-    alert("File upload failed");
-    return;
-  }
-
-  document.getElementById("driveLinks").value = result.links.join(", ");
-
-  this.action = FORMSPREE_URL;
-  this.method = "POST";
-  this.submit();
 });
-
-function toBase64(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
-}
 </script>
 
 </body>
