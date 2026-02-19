@@ -330,3 +330,68 @@ footer {
     height: 260px;
   }
 }
+/* =========================
+   CUSTOMIZE PAGE
+========================= */
+.customize-section {
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 70px 30px;
+  background: linear-gradient(270deg, #0d47a1, #1976d2, #00c6ff);
+  background-size: 600% 600%;
+  animation: bgMove 12s ease infinite;
+}
+
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.customize-card {
+  background: white;
+  padding: 45px 40px;
+  border-radius: 22px;
+  max-width: 450px;
+  width: 100%;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.25);
+}
+
+.customize-card h2 {
+  color: #0d47a1;
+  margin-bottom: 10px;
+}
+
+.customize-card p {
+  margin-bottom: 25px;
+  opacity: 0.85;
+}
+
+.custom-form input,
+.custom-form select,
+.custom-form textarea {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-family: inherit;
+}
+
+.custom-form textarea {
+  resize: none;
+  min-height: 100px;
+}
+
+.calc-box {
+  display: none;
+}
+
+.price-box {
+  margin: 15px 0;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #0d47a1;
+}
