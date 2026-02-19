@@ -23,6 +23,13 @@ body {
   line-height: 1.6;
 }
 
+/* Limit content width on large screens */
+section {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* =========================
    HEADER / NAVBAR
 ========================= */
@@ -80,12 +87,17 @@ nav a:hover::after {
   text-decoration: none;
   border: none;
   cursor: pointer;
-  transition: 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .btn:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+
+.btn:focus {
+  outline: 3px solid rgba(0,198,255,0.6);
+  outline-offset: 3px;
 }
 
 .full-btn {
@@ -139,7 +151,7 @@ nav a:hover::after {
   border-radius: 20px;
   text-align: center;
   box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-  transition: 0.35s;
+  transition: transform 0.35s ease;
 }
 
 .service-card:hover {
@@ -168,7 +180,7 @@ nav a:hover::after {
 }
 
 /* =========================
-   CONTACT PAGE (LOTTIE VERSION)
+   CONTACT PAGE (LOTTIE)
 ========================= */
 .contact-page {
   min-height: 90vh;
@@ -179,7 +191,6 @@ nav a:hover::after {
   padding: 70px 40px;
 }
 
-/* CONTACT FORM CARD */
 .contact-form-box {
   background: white;
   padding: 45px 40px;
@@ -199,7 +210,6 @@ nav a:hover::after {
   opacity: 0.85;
 }
 
-/* FORM */
 .contact-form input,
 .contact-form textarea {
   width: 100%;
@@ -223,7 +233,6 @@ nav a:hover::after {
   box-shadow: 0 0 10px rgba(25,118,210,0.35);
 }
 
-/* CONTACT INFO */
 .contact-info {
   margin-top: 25px;
   font-size: 0.95rem;
@@ -233,9 +242,7 @@ nav a:hover::after {
   margin-bottom: 6px;
 }
 
-/* =========================
-   CONTACT LOTTIE ANIMATION
-========================= */
+/* LOTTIE */
 .contact-illustration {
   width: 100%;
   max-width: 480px;
@@ -278,58 +285,14 @@ nav a:hover::after {
   backdrop-filter: blur(16px);
   padding: 25px;
   border-radius: 22px;
-  transition: 0.35s;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 .project-card:hover {
   transform: translateY(-10px);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.35);
 }
 
-/* =========================
-   WHATSAPP FLOATING BUTTON
-========================= */
-.whatsapp {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #25D366;
-  color: white;
-  padding: 15px 18px;
-  border-radius: 50%;
-  font-size: 22px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
-  z-index: 999;
-}
-
-/* =========================
-   FOOTER
-========================= */
-footer {
-  background: #0d47a1;
-  color: white;
-  text-align: center;
-  padding: 18px;
-  font-size: 0.9rem;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 900px) {
-  header {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .contact-page {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .youtube iframe {
-    height: 260px;
-  }
-}
 /* =========================
    CUSTOMIZE PAGE
 ========================= */
@@ -394,4 +357,50 @@ footer {
   font-weight: 600;
   font-size: 1.1rem;
   color: #0d47a1;
+}
+
+/* =========================
+   WHATSAPP FLOATING BUTTON
+========================= */
+.whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: white;
+  padding: 15px 18px;
+  border-radius: 50%;
+  font-size: 22px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+  z-index: 999;
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+  background: #0d47a1;
+  color: white;
+  text-align: center;
+  padding: 18px;
+  font-size: 0.9rem;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 900px) {
+  header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .contact-page {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .youtube iframe {
+    height: 260px;
+  }
 }
