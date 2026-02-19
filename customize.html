@@ -9,6 +9,42 @@
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
   <link rel="stylesheet" href="style.css">
+
+  <!-- DRIVE LINK UX -->
+  <style>
+    .drive-link-box {
+      position: relative;
+    }
+
+    .drive-link-box input {
+      padding-right: 50px;
+    }
+
+    .drive-tick {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 32px;
+      height: 32px;
+      display: none;
+    }
+
+    .drive-valid {
+      border-color: #22c55e !important;
+      background: #f0fdf4;
+    }
+
+    .drive-invalid {
+      border-color: #ef4444 !important;
+      background: #fef2f2;
+    }
+
+    button[disabled] {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  </style>
 </head>
 <body>
 
@@ -61,14 +97,14 @@
         <option value="MATLAB / Simulation">MATLAB / Simulation</option>
       </select>
 
-      <!-- ================= GOOGLE DRIVE UPLOAD (POLISHED) ================= -->
+      <!-- ================= GOOGLE DRIVE UPLOAD ================= -->
       <div class="upload-box polished-upload">
         <label class="upload-label">
           Upload Design Files (Google Drive)
         </label>
 
         <p class="upload-hint">
-          Step 1: Upload your STL / STEP / PDF files to Google Drive
+          Step 1: Upload STL / STEP / PDF to Google Drive
         </p>
 
         <a
@@ -80,17 +116,34 @@
         </a>
 
         <p class="upload-hint">
-          Step 2: Paste the Google Drive file link below
+          Step 2: Paste the Google Drive link below
         </p>
 
-        <input
-          type="url"
-          name="drive_links"
-          placeholder="https://drive.google.com/..."
-          required
-        >
+        <!-- DRIVE LINK + TICK -->
+        <div class="drive-link-box">
+          <input
+            type="url"
+            id="driveLinkInput"
+            name="drive_links"
+            placeholder="https://drive.google.com/..."
+            required
+          >
+
+          <!-- SMALL LOTTIE CHECK -->
+          <lottie-player
+            id="driveTick"
+            class="drive-tick"
+            src="https://assets1.lottiefiles.com/packages/lf20_jbrw3hcz.json"
+            background="transparent"
+            speed="1">
+          </lottie-player>
+        </div>
+
+        <small id="driveHelp" class="upload-hint">
+          Paste a valid Google Drive file or folder link
+        </small>
       </div>
-      <!-- ================================================================ -->
+      <!-- ======================================================= -->
 
       <!-- 3D PRINT ONLY -->
       <div class="calc-box" id="gramsBox" style="display:none;">
@@ -123,7 +176,7 @@
         value="₹0"
       >
 
-      <button type="submit" class="btn full-btn">
+      <button type="submit" class="btn full-btn" id="submitBtn" disabled>
         Submit Project Request
       </button>
 
@@ -152,37 +205,57 @@
 
 <!-- ================= SCRIPT ================= -->
 <script>
+/* ===== PRICE LOGIC (UNCHANGED) ===== */
 function handleProjectType() {
-  const type = document.getElementById("projectType").value;
-  const gramsBox = document.getElementById("gramsBox");
-  const fixedBox = document.getElementById("fixedCostBox");
-  const total = document.getElementById("totalCost");
-  const hidden = document.getElementById("estimatedCostField");
+  const type = projectType.value;
+
+  gramsBox.style.display = type === "3D Printing" ? "flex" : "none";
+  fixedCostBox.style.display = type && type !== "3D Printing" ? "block" : "none";
 
   if (type === "3D Printing") {
-    gramsBox.style.display = "flex";
-    fixedBox.style.display = "none";
-    total.innerText = 50;
-    hidden.value = "₹50 (Base Service Charge)";
+    totalCost.innerText = 50;
+    estimatedCostField.value = "₹50 (Base Service Charge)";
   } else if (type) {
-    gramsBox.style.display = "none";
-    fixedBox.style.display = "block";
-    total.innerText = 1500;
-    hidden.value = "₹1500 – ₹3000 (After Review)";
+    totalCost.innerText = 1500;
+    estimatedCostField.value = "₹1500 – ₹3000 (After Review)";
   } else {
-    gramsBox.style.display = "none";
-    fixedBox.style.display = "none";
-    total.innerText = 0;
-    hidden.value = "₹0";
+    totalCost.innerText = 0;
+    estimatedCostField.value = "₹0";
   }
 }
 
 function calculateCost() {
-  const grams = document.getElementById("grams").value || 0;
+  const grams = gramsInput.value || 0;
   const cost = grams * 10 + 50;
-  document.getElementById("totalCost").innerText = cost;
-  document.getElementById("estimatedCostField").value = "₹" + cost;
+  totalCost.innerText = cost;
+  estimatedCostField.value = "₹" + cost;
 }
+
+/* ===== DRIVE LINK VALIDATION + LOTTIE ===== */
+const driveInput = document.getElementById("driveLinkInput");
+const tick = document.getElementById("driveTick");
+const submitBtn = document.getElementById("submitBtn");
+
+const DRIVE_REGEX =
+  /^https?:\/\/(drive\.google\.com)\/(file\/d\/|drive\/folders\/).+/;
+
+driveInput.addEventListener("input", () => {
+  if (DRIVE_REGEX.test(driveInput.value.trim())) {
+    driveInput.classList.add("drive-valid");
+    driveInput.classList.remove("drive-invalid");
+
+    tick.style.display = "block";
+    tick.play();
+
+    submitBtn.disabled = false;
+  } else {
+    driveInput.classList.remove("drive-valid");
+    driveInput.classList.add("drive-invalid");
+
+    tick.style.display = "none";
+    submitBtn.disabled = true;
+  }
+});
 </script>
 
 </body>
