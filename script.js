@@ -267,3 +267,40 @@ function calculateCost() {
 
 </body>
 </html>
+// other JS code above (price calc, form logic, etc.)
+
+/* ================= PROJECT FILTER ================= */
+function filterProjects(type) {
+  document.querySelectorAll(".project-card").forEach(card => {
+    card.style.display =
+      type === "all" || card.classList.contains(type)
+        ? "block"
+        : "none";
+  });
+}
+
+/* ================= NAVBAR SHADOW ================= */
+window.addEventListener("scroll", () => {
+  const header = document.querySelector("header");
+  if (header) {
+    header.style.boxShadow =
+      window.scrollY > 20 ? "0 5px 15px rgba(0,0,0,.2)" : "none";
+  }
+});
+
+/* ================= DARK MODE (OPTIONAL) ================= */
+const toggle = document.getElementById("darkToggle");
+if (toggle) {
+  if (localStorage.theme === "dark") {
+    document.body.classList.add("dark");
+    toggle.textContent = "☀️";
+  }
+
+  toggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+    localStorage.theme =
+      document.body.classList.contains("dark") ? "dark" : "light";
+    toggle.textContent =
+      document.body.classList.contains("dark") ? "☀️" : "🌙";
+  });
+}
