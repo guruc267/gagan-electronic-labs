@@ -23,13 +23,6 @@ body {
   line-height: 1.6;
 }
 
-/* Limit content width on large screens */
-section {
-  max-width: 1400px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 /* =========================
    HEADER / NAVBAR
 ========================= */
@@ -79,7 +72,7 @@ nav a:hover::after {
 ========================= */
 .btn {
   display: inline-block;
-  padding: 14px 38px;
+  padding: 14px 36px;
   background: linear-gradient(135deg, #00c6ff, #1976d2);
   color: white;
   border-radius: 40px;
@@ -87,17 +80,12 @@ nav a:hover::after {
   text-decoration: none;
   border: none;
   cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: 0.3s;
 }
 
 .btn:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-}
-
-.btn:focus {
-  outline: 3px solid rgba(0,198,255,0.6);
-  outline-offset: 3px;
 }
 
 .full-btn {
@@ -106,7 +94,7 @@ nav a:hover::after {
 }
 
 /* =========================
-   HERO SECTION
+   HERO
 ========================= */
 .hero {
   min-height: 90vh;
@@ -151,7 +139,7 @@ nav a:hover::after {
   border-radius: 20px;
   text-align: center;
   box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-  transition: transform 0.35s ease;
+  transition: 0.35s;
 }
 
 .service-card:hover {
@@ -159,7 +147,7 @@ nav a:hover::after {
 }
 
 /* =========================
-   YOUTUBE SECTION
+   YOUTUBE
 ========================= */
 .youtube {
   background: white;
@@ -218,7 +206,6 @@ nav a:hover::after {
   border-radius: 12px;
   border: 1px solid #ccc;
   font-size: 1rem;
-  font-family: inherit;
 }
 
 .contact-form textarea {
@@ -238,16 +225,11 @@ nav a:hover::after {
   font-size: 0.95rem;
 }
 
-.contact-info p {
-  margin-bottom: 6px;
-}
-
 /* LOTTIE */
 .contact-illustration {
-  width: 100%;
   max-width: 480px;
+  width: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
 }
 
@@ -255,42 +237,102 @@ nav a:hover::after {
   width: 100%;
   max-width: 420px;
   height: 420px;
-  animation: lottieFloat 4.5s ease-in-out infinite;
+  animation: float 4.5s ease-in-out infinite;
 }
 
-@keyframes lottieFloat {
+@keyframes float {
   0% { transform: translateY(0); }
   50% { transform: translateY(-16px); }
   100% { transform: translateY(0); }
 }
 
 /* =========================
-   PROJECTS PAGE
+   PROJECTS PAGE (FIXED)
 ========================= */
 .projects-page {
   min-height: 100vh;
   padding: 90px 40px;
-  background: linear-gradient(135deg,#0d47a1,#1976d2);
+  background: linear-gradient(135deg, #0d47a1, #1976d2);
   color: white;
+  text-align: center;
 }
 
+.projects-page h2 {
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+}
+
+.projects-page p {
+  opacity: 0.9;
+  margin-bottom: 40px;
+}
+
+/* FILTERS */
+.filters {
+  margin-bottom: 40px;
+}
+
+.filters button {
+  margin: 8px;
+  padding: 10px 26px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  background: rgba(255,255,255,0.3);
+  color: white;
+  transition: 0.3s;
+}
+
+.filters button:hover {
+  background: white;
+  color: #0d47a1;
+}
+
+/* GRID */
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 30px;
+  max-width: 1200px;
+  margin: auto;
 }
 
+/* CARD */
 .project-card {
-  background: rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.22);
   backdrop-filter: blur(16px);
-  padding: 25px;
+  padding: 28px;
   border-radius: 22px;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  text-align: left;
+  transition: 0.35s;
+  position: relative;
 }
 
 .project-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+  transform: translateY(-12px);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+}
+
+.project-card h3 {
+  margin-bottom: 10px;
+}
+
+.project-card p {
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+/* TAG */
+.project-card .tag {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: rgba(255,255,255,0.35);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
 }
 
 /* =========================
@@ -322,45 +364,8 @@ nav a:hover::after {
   box-shadow: 0 30px 70px rgba(0,0,0,0.25);
 }
 
-.customize-card h2 {
-  color: #0d47a1;
-  margin-bottom: 10px;
-}
-
-.customize-card p {
-  margin-bottom: 25px;
-  opacity: 0.85;
-}
-
-.custom-form input,
-.custom-form select,
-.custom-form textarea {
-  width: 100%;
-  padding: 14px;
-  margin-bottom: 15px;
-  border-radius: 12px;
-  border: 1px solid #ccc;
-  font-family: inherit;
-}
-
-.custom-form textarea {
-  resize: none;
-  min-height: 100px;
-}
-
-.calc-box {
-  display: none;
-}
-
-.price-box {
-  margin: 15px 0;
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: #0d47a1;
-}
-
 /* =========================
-   WHATSAPP FLOATING BUTTON
+   WHATSAPP
 ========================= */
 .whatsapp {
   position: fixed;
