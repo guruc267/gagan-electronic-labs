@@ -62,11 +62,30 @@ if (contactForm) {
 }
 
 /* ======================================================
-   CUSTOMIZE PAGE LOGIC (FINAL FIXED)
+   PRICE COUNTER ANIMATION
+====================================================== */
+function animatePrice(element, from, to, duration = 400) {
+  const start = performance.now();
+
+  function update(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    const value = Math.round(from + (to - from) * progress);
+    element.innerText = value;
+
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    }
+  }
+
+  requestAnimationFrame(update);
+}
+
+/* ======================================================
+   CUSTOMIZE PAGE LOGIC (FINAL – FIXED)
 ====================================================== */
 document.addEventListener("DOMContentLoaded", () => {
   const customForm = $("customForm");
-  if (!customForm) return; // ✅ run only on customize page
+  if (!customForm) return;
 
   const projectType = $("projectType");
   const gramsBox = $("gramsBox");
@@ -79,51 +98,49 @@ document.addEventListener("DOMContentLoaded", () => {
   const driveStatus = $("driveStatus");
   const submitBtn = customForm.querySelector("button[type='submit']");
 
-  /* ======================================================
-     PRICE LOGIC (FIXED)
-  ======================================================= */
-
+  /* ================= PROJECT TYPE CHANGE ================= */
   window.handleProjectType = function () {
     const type = projectType.value;
+    const current = parseInt(totalCost.innerText) || 0;
 
     if (type === "3D Printing") {
       gramsBox.style.display = "flex";
       fixedCostBox.style.display = "none";
 
-      animatePrice(totalCost, 0, 50);
+      animatePrice(totalCost, current, 50);
       estimatedField.value = "₹50 (Base Service Charge)";
-
       if (gramsInput) gramsInput.value = "";
     }
     else if (type) {
       gramsBox.style.display = "none";
       fixedCostBox.style.display = "block";
 
-      animatePrice(totalCost, 50, 1500);
+      animatePrice(totalCost, current, 1500);
       estimatedField.value = "₹1500 – ₹3000 (After Review)";
     }
     else {
       gramsBox.style.display = "none";
       fixedCostBox.style.display = "none";
 
-      totalCost.innerText = "0";
+      animatePrice(totalCost, current, 0);
       estimatedField.value = "₹0";
     }
   };
 
-  /* ---------- LIVE 3D PRINT COST ---------- */
+  /* ================= LIVE 3D PRINT COST ================= */
   if (gramsInput) {
     gramsInput.addEventListener("input", () => {
       const grams = parseFloat(gramsInput.value);
+      const current = parseInt(totalCost.innerText) || 50;
 
       if (isNaN(grams) || grams <= 0) {
-        totalCost.innerText = "50";
+        animatePrice(totalCost, current, 50);
         estimatedField.value = "₹50 (Base Service Charge)";
         return;
       }
 
       const cost = grams * 10 + 50;
-      totalCost.innerText = cost;
+      animatePrice(totalCost, current, cost);
       estimatedField.value = "₹" + cost;
     });
   }
@@ -168,25 +185,6 @@ document.addEventListener("DOMContentLoaded", () => {
      FORM SUBMIT
   ======================================================= */
   customForm.addEventListener("submit", () => {
-    // Formspree will handle submission naturally
+    // Formspree handles submission
   });
 });
-/* ======================================================
-   PRICE COUNTER ANIMATION
-====================================================== */
-function animatePrice(element, from, to, duration = 400) {
-  const start = performance.now();
-
-  function update(now) {
-    const progress = Math.min((now - start) / duration, 1);
-    const value = Math.round(from + (to - from) * progress);
-    element.innerText = value;
-
-    if (progress < 1) {
-      requestAnimationFrame(update);
-    }
-  }
-
-  requestAnimationFrame(update);
-}
-
