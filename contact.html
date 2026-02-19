@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Contact Us | GAGAN ELECTRONIC LABS</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Contact Us | GAGAN ELECTRONIC LABS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="style.css">
+<script defer src="script.js"></script>
 </head>
+
 <body>
 
 <header>
@@ -16,6 +19,7 @@
     <a href="customize.html">Customize</a>
     <a href="contact.html">Contact</a>
   </nav>
+  <button id="darkToggle">🌙</button>
 </header>
 
 <section class="contact-page">
@@ -24,11 +28,16 @@
     <h2>Contact Us</h2>
     <p>Have a question or project idea? Let’s talk.</p>
 
-    <form class="contact-form" action="https://formspree.io/f/mvzbqqry" method="POST">
+    <form
+      class="contact-form"
+      action="https://formspree.io/f/mvzbqqry"
+      method="POST"
+    >
       <input type="text" name="name" placeholder="Your Name" required>
       <input type="email" name="email" placeholder="Your Email" required>
       <textarea name="message" placeholder="Your Message" required></textarea>
-      <button class="btn full-btn">Send Message</button>
+
+      <button type="submit" class="btn full-btn">Send Message</button>
     </form>
 
     <div class="contact-info">
@@ -38,8 +47,10 @@
     </div>
   </div>
 
-  <div class="contact-illustration">
-    <img src="https://storyset.com/illustration/contact-us/amico" alt="">
+  <div class="contact-illustration floating">
+    <img
+      src="https://cdn-icons-png.flaticon.com/512/906/906334.png"
+      alt="Contact Animation">
   </div>
 
 </section>
@@ -48,7 +59,7 @@
   © 2026 Gagan Electronic Labs. All Rights Reserved.
 </footer>
 
-<a href="https://wa.me/916301509299" class="whatsapp">💬</a>
+<a href="https://wa.me/916301509299" class="whatsapp" target="_blank">💬</a>
 
 </body>
 </html>
