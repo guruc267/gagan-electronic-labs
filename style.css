@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 /* =========================
-   RESET
+   RESET & BASE
 ========================= */
 * {
   box-sizing: border-box;
@@ -206,6 +206,7 @@ nav a:hover::after {
   border-radius: 12px;
   border: 1px solid #ccc;
   font-size: 1rem;
+  font-family: inherit;
 }
 
 .contact-form textarea {
@@ -225,9 +226,21 @@ nav a:hover::after {
   font-size: 0.95rem;
 }
 
+.contact-info p {
+  margin-bottom: 6px;
+}
+
+/* CONTACT IMAGE + SAFE ANIMATION */
 .contact-illustration img {
   width: 100%;
   max-width: 480px;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+  100% { transform: translateY(0); }
 }
 
 /* =========================
@@ -288,6 +301,11 @@ footer {
    RESPONSIVE
 ========================= */
 @media (max-width: 900px) {
+  header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
   .contact-page {
     flex-direction: column;
     text-align: center;
@@ -295,10 +313,5 @@ footer {
 
   .youtube iframe {
     height: 260px;
-  }
-
-  header {
-    flex-direction: column;
-    gap: 10px;
   }
 }
