@@ -1,57 +1,3 @@
-function filterProjects(type) {
-  document.querySelectorAll(".project-card").forEach(card => {
-    if (type === "all" || card.classList.contains(type)) {
-      card.style.display = "block";
-    } else {
-      card.style.display = "none";
-    }
-  });
-}
-
-
-function validateForm(){
-  if(!name.value || !email.value || !message.value){
-    alert("Please fill all fields");
-    return false;
-  }
-  return true;
-}
-// Navbar shadow on scroll
-window.addEventListener("scroll",()=>{
-  document.querySelector("header").style.boxShadow =
-    window.scrollY > 20 ? "0 5px 15px rgba(0,0,0,.2)" : "none";
-});
-const toggle = document.getElementById("darkToggle");
-
-// Load saved theme
-if(localStorage.theme === "dark"){
-  document.body.classList.add("dark");
-  toggle.textContent = "☀️";
-}
-
-toggle.addEventListener("click", () => {
-  document.body.classList.toggle("dark");
-
-  if(document.body.classList.contains("dark")){
-    localStorage.theme = "dark";
-    toggle.textContent = "☀️";
-  } else {
-    localStorage.theme = "light";
-    toggle.textContent = "🌙";
-  }
-});
-// Success animation after submit
-const form = document.getElementById("contactForm");
-
-if(form){
-  form.addEventListener("submit", () => {
-    setTimeout(() => {
-      document.querySelector(".success-message").style.display = "block";
-      form.reset();
-    }, 1000);
-  });
-}
-
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ================= PROJECT FILTER ================= */
@@ -73,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /* ================= CONTACT PAGE SUCCESS ================= */
+  /* ================= CONTACT FORM SUCCESS ================= */
   const contactForm = document.getElementById("contactForm");
   if (contactForm) {
     contactForm.addEventListener("submit", () => {
@@ -87,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ================= CUSTOMIZE PAGE ================= */
   const customForm = document.getElementById("customForm");
-  if (!customForm) return; // stop if not customize page
+  if (!customForm) return; // stop JS here if not customize page
 
   const projectType = document.getElementById("projectType");
   const gramsBox = document.getElementById("gramsBox");
@@ -104,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const progressText = document.getElementById("progressText");
   const successMessage = document.getElementById("successMessage");
 
-  /* ===== PRICE LOGIC ===== */
+  /* ================= PRICE LOGIC ================= */
   window.handleProjectType = function () {
     const type = projectType.value;
 
@@ -133,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
     estimatedField.value = "₹" + cost;
   };
 
-  /* ===== FORM SUBMIT (DRIVE + FORMSPREE) ===== */
+  /* ================= FORM SUBMIT ================= */
   customForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
