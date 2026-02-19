@@ -1,9 +1,13 @@
-function filterProjects(type){
-  document.querySelectorAll('.card').forEach(card=>{
-    card.style.display =
-      type==='all' || card.classList.contains(type) ? 'block' : 'none';
+function filterProjects(type) {
+  document.querySelectorAll(".project-card").forEach(card => {
+    if (type === "all" || card.classList.contains(type)) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
   });
 }
+
 
 function validateForm(){
   if(!name.value || !email.value || !message.value){
