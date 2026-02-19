@@ -62,9 +62,11 @@ if (contactForm) {
 }
 
 /* ======================================================
-   PRICE COUNTER ANIMATION
+   PRICE COUNTER ANIMATION (SAFE)
 ====================================================== */
 function animatePrice(element, from, to, duration = 400) {
+  if (!element) return;
+
   const start = performance.now();
 
   function update(now) {
@@ -81,11 +83,11 @@ function animatePrice(element, from, to, duration = 400) {
 }
 
 /* ======================================================
-   CUSTOMIZE PAGE LOGIC (FINAL – FIXED)
+   CUSTOMIZE PAGE LOGIC (FINAL + STABLE)
 ====================================================== */
 document.addEventListener("DOMContentLoaded", () => {
   const customForm = $("customForm");
-  if (!customForm) return;
+  if (!customForm) return; // run only on customize page
 
   const projectType = $("projectType");
   const gramsBox = $("gramsBox");
@@ -98,7 +100,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const driveStatus = $("driveStatus");
   const submitBtn = customForm.querySelector("button[type='submit']");
 
-  /* ================= PROJECT TYPE CHANGE ================= */
+  /* ======================================================
+     PROJECT TYPE CHANGE
+  ======================================================= */
   window.handleProjectType = function () {
     const type = projectType.value;
     const current = parseInt(totalCost.innerText) || 0;
@@ -109,6 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       animatePrice(totalCost, current, 50);
       estimatedField.value = "₹50 (Base Service Charge)";
+
       if (gramsInput) gramsInput.value = "";
     }
     else if (type) {
@@ -127,7 +132,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  /* ================= LIVE 3D PRINT COST ================= */
+  /* ======================================================
+     LIVE 3D PRINT COST (FIXED 🔥)
+  ======================================================= */
   if (gramsInput) {
     gramsInput.addEventListener("input", () => {
       const grams = parseFloat(gramsInput.value);
@@ -182,9 +189,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ======================================================
-     FORM SUBMIT
+     FORM SUBMIT (Formspree)
   ======================================================= */
   customForm.addEventListener("submit", () => {
-    // Formspree handles submission
+    // Let Formspree handle submission naturally
   });
 });
