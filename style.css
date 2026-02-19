@@ -517,3 +517,54 @@ button[disabled] {
   50%  { box-shadow: 0 0 18px rgba(37,99,235,0.5); }
   100% { box-shadow: 0 0 0 rgba(37,99,235,0.3); }
 }
+/* =========================
+   WHATSAPP FLOATING CALLOUT
+========================= */
+
+.whatsapp::before {
+  content: "Need help? Chat with us 👋";
+  position: absolute;
+  right: 70px;
+  bottom: 50%;
+  transform: translateY(50%);
+  background: #ffffff;
+  color: #1f2937;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.4s ease;
+  animation: floatBubble 2.8s ease-in-out infinite;
+}
+
+.whatsapp::after {
+  content: "";
+  position: absolute;
+  right: 56px;
+  bottom: 50%;
+  transform: translateY(50%);
+  border: 8px solid transparent;
+  border-left-color: white;
+  opacity: 0;
+  transition: 0.4s ease;
+}
+
+/* Show bubble after page loads */
+body:hover .whatsapp::before,
+body:hover .whatsapp::after {
+  opacity: 1;
+}
+
+@keyframes floatBubble {
+  0%, 100% {
+    transform: translateY(50%) translateY(0);
+  }
+  50% {
+    transform: translateY(50%) translateY(-6px);
+  }
+}
+
