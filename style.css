@@ -288,6 +288,13 @@ nav a:hover::after {
   text-align: center;
   font-weight: 600;
 }
+.price-box span {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
 
 /* =========================
    CONTACT PAGE
