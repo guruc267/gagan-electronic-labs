@@ -12,9 +12,7 @@
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   font-family: 'Poppins', sans-serif;
@@ -63,23 +61,20 @@ nav a::after {
   transition: 0.3s;
 }
 
-nav a:hover::after {
-  width: 100%;
-}
+nav a:hover::after { width: 100%; }
 
 /* =========================
    BUTTONS
 ========================= */
 .btn {
-  display: inline-block;
   padding: 14px 36px;
   background: linear-gradient(135deg, #00c6ff, #1976d2);
   color: white;
   border-radius: 40px;
   font-weight: 600;
-  text-decoration: none;
   border: none;
   cursor: pointer;
+  text-decoration: none;
   transition: 0.3s;
 }
 
@@ -88,38 +83,48 @@ nav a:hover::after {
   box-shadow: 0 12px 30px rgba(0,0,0,0.25);
 }
 
-.full-btn {
-  width: 100%;
-  margin-top: 10px;
+.btn.outline {
+  background: transparent;
+  border: 2px solid white;
 }
 
+.btn.outline:hover {
+  background: white;
+  color: #0d47a1;
+}
+
+.full-btn { width: 100%; }
+
 /* =========================
-   HERO
+   PREMIUM HERO
 ========================= */
 .hero {
   min-height: 90vh;
-  background:
-    linear-gradient(rgba(13,71,161,0.9), rgba(25,118,210,0.9)),
-    url("https://images.unsplash.com/photo-1581092334651-ddf26d9c9c8c");
-  background-size: cover;
-  background-position: center;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 40px;
+  padding: 80px 60px;
   color: white;
-  text-align: center;
-  padding: 60px 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  background: linear-gradient(270deg,#0d47a1,#1976d2,#00c6ff);
+  background-size: 600% 600%;
+  animation: heroBG 14s ease infinite;
+}
+
+@keyframes heroBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .hero h2 {
-  font-size: 3rem;
+  font-size: 3.4rem;
   margin-bottom: 15px;
 }
 
 .hero p {
-  max-width: 700px;
-  margin: auto;
-  font-size: 1.15rem;
+  max-width: 520px;
+  font-size: 1.2rem;
   opacity: 0.95;
 }
 
@@ -129,7 +134,7 @@ nav a:hover::after {
 .services {
   padding: 80px 40px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
   gap: 35px;
 }
 
@@ -142,9 +147,7 @@ nav a:hover::after {
   transition: 0.35s;
 }
 
-.service-card:hover {
-  transform: translateY(-10px);
-}
+.service-card:hover { transform: translateY(-10px); }
 
 /* =========================
    YOUTUBE
@@ -153,7 +156,6 @@ nav a:hover::after {
   background: white;
   margin: -80px auto 80px;
   padding: 50px;
-  width: 92%;
   max-width: 1050px;
   border-radius: 20px;
   box-shadow: 0 30px 60px rgba(0,0,0,0.18);
@@ -173,8 +175,8 @@ nav a:hover::after {
 .contact-page {
   min-height: 90vh;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   gap: 60px;
   padding: 70px 40px;
 }
@@ -184,58 +186,20 @@ nav a:hover::after {
   padding: 45px 40px;
   border-radius: 22px;
   max-width: 420px;
-  width: 100%;
   box-shadow: 0 25px 55px rgba(0,0,0,0.18);
-}
-
-.contact-form-box h2 {
-  color: #0d47a1;
-  margin-bottom: 10px;
-}
-
-.contact-form-box p {
-  margin-bottom: 25px;
-  opacity: 0.85;
 }
 
 .contact-form input,
 .contact-form textarea {
   width: 100%;
   padding: 14px 16px;
-  margin-bottom: 15px;
+  margin-bottom: 14px;
   border-radius: 12px;
   border: 1px solid #ccc;
-  font-size: 1rem;
-}
-
-.contact-form textarea {
-  min-height: 120px;
-  resize: none;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-  outline: none;
-  border-color: #1976d2;
-  box-shadow: 0 0 10px rgba(25,118,210,0.35);
-}
-
-.contact-info {
-  margin-top: 25px;
-  font-size: 0.95rem;
-}
-
-/* LOTTIE */
-.contact-illustration {
-  max-width: 480px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
 }
 
 .contact-illustration lottie-player {
-  width: 100%;
-  max-width: 420px;
+  width: 420px;
   height: 420px;
   animation: float 4.5s ease-in-out infinite;
 }
@@ -247,58 +211,24 @@ nav a:hover::after {
 }
 
 /* =========================
-   PROJECTS PAGE (FIXED)
+   PROJECTS
 ========================= */
 .projects-page {
   min-height: 100vh;
   padding: 90px 40px;
-  background: linear-gradient(135deg, #0d47a1, #1976d2);
+  background: linear-gradient(135deg,#0d47a1,#1976d2);
   color: white;
   text-align: center;
 }
 
-.projects-page h2 {
-  font-size: 2.8rem;
-  margin-bottom: 10px;
-}
-
-.projects-page p {
-  opacity: 0.9;
-  margin-bottom: 40px;
-}
-
-/* FILTERS */
-.filters {
-  margin-bottom: 40px;
-}
-
-.filters button {
-  margin: 8px;
-  padding: 10px 26px;
-  border-radius: 30px;
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
-  background: rgba(255,255,255,0.3);
-  color: white;
-  transition: 0.3s;
-}
-
-.filters button:hover {
-  background: white;
-  color: #0d47a1;
-}
-
-/* GRID */
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
   gap: 30px;
   max-width: 1200px;
   margin: auto;
 }
 
-/* CARD */
 .project-card {
   background: rgba(255,255,255,0.22);
   backdrop-filter: blur(16px);
@@ -306,7 +236,6 @@ nav a:hover::after {
   border-radius: 22px;
   text-align: left;
   transition: 0.35s;
-  position: relative;
 }
 
 .project-card:hover {
@@ -314,29 +243,8 @@ nav a:hover::after {
   box-shadow: 0 30px 60px rgba(0,0,0,0.35);
 }
 
-.project-card h3 {
-  margin-bottom: 10px;
-}
-
-.project-card p {
-  font-size: 0.95rem;
-  opacity: 0.9;
-}
-
-/* TAG */
-.project-card .tag {
-  position: absolute;
-  top: 18px;
-  right: 18px;
-  background: rgba(255,255,255,0.35);
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-
 /* =========================
-   CUSTOMIZE PAGE
+   CUSTOMIZE + PRICE CALCULATOR
 ========================= */
 .customize-section {
   min-height: 90vh;
@@ -344,15 +252,9 @@ nav a:hover::after {
   justify-content: center;
   align-items: center;
   padding: 70px 30px;
-  background: linear-gradient(270deg, #0d47a1, #1976d2, #00c6ff);
+  background: linear-gradient(270deg,#0d47a1,#1976d2,#00c6ff);
   background-size: 600% 600%;
-  animation: bgMove 12s ease infinite;
-}
-
-@keyframes bgMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  animation: heroBG 12s ease infinite;
 }
 
 .customize-card {
@@ -360,8 +262,21 @@ nav a:hover::after {
   padding: 45px 40px;
   border-radius: 22px;
   max-width: 450px;
-  width: 100%;
   box-shadow: 0 30px 70px rgba(0,0,0,0.25);
+}
+
+.price-box {
+  background: linear-gradient(135deg,#0d47a1,#1976d2);
+  color: white;
+  padding: 16px;
+  border-radius: 16px;
+  text-align: center;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.price-box span {
+  font-size: 2rem;
 }
 
 /* =========================
@@ -377,7 +292,6 @@ nav a:hover::after {
   border-radius: 50%;
   font-size: 22px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.35);
-  z-index: 999;
 }
 
 /* =========================
@@ -388,139 +302,41 @@ footer {
   color: white;
   text-align: center;
   padding: 18px;
-  font-size: 0.9rem;
+}
+
+/* =========================
+   DARK MODE
+========================= */
+body.dark {
+  background: #0f172a;
+  color: #e5e7eb;
+}
+
+body.dark header,
+body.dark footer {
+  background: #020617;
+}
+
+body.dark .service-card,
+body.dark .contact-form-box,
+body.dark .customize-card {
+  background: #020617;
+  color: #e5e7eb;
+}
+
+body.dark input,
+body.dark textarea {
+  background: #020617;
+  color: #e5e7eb;
+  border-color: #334155;
 }
 
 /* =========================
    RESPONSIVE
 ========================= */
 @media (max-width: 900px) {
-  header {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .contact-page {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .youtube iframe {
-    height: 260px;
-  }
-}
-/* =========================
-   COST ESTIMATOR UI UPGRADE
-========================= */
-
-/* Form spacing */
-.custom-form {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-/* Inputs & Select */
-.custom-form input,
-.custom-form select,
-.custom-form textarea {
-  width: 100%;
-  padding: 14px 16px;
-  border-radius: 12px;
-  border: 1.8px solid #d0d7e2;
-  font-size: 0.95rem;
-  transition: 0.25s;
-  background: #f9fbff;
-}
-
-.custom-form input:focus,
-.custom-form select:focus,
-.custom-form textarea:focus {
-  outline: none;
-  border-color: #1976d2;
-  background: #fff;
-  box-shadow: 0 0 0 3px rgba(25,118,210,0.15);
-}
-
-/* Upload box */
-.upload-box {
-  background: #f4f8ff;
-  border: 2px dashed #b6c8ea;
-  border-radius: 16px;
-  padding: 16px;
-  text-align: center;
-}
-
-.upload-box label {
-  font-weight: 600;
-  margin-bottom: 6px;
-  display: block;
-}
-
-.upload-box small {
-  display: block;
-  margin-top: 6px;
-  opacity: 0.7;
-}
-
-/* Gram calculator row */
-.calc-box {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.calc-box span {
-  font-size: 0.85rem;
-  color: #1976d2;
-  font-weight: 500;
-}
-
-/* Fixed price block */
-.fixed-cost {
-  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-  padding: 14px 16px;
-  border-radius: 14px;
-  text-align: center;
-}
-
-.fixed-cost strong {
-  display: block;
-  font-size: 0.95rem;
-}
-
-.fixed-cost p {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #0d47a1;
-}
-
-/* =========================
-   ESTIMATED PRICE HIGHLIGHT
-========================= */
-.price-box {
-  margin-top: 10px;
-  background: linear-gradient(135deg, #0d47a1, #1976d2);
-  color: white;
-  padding: 16px 20px;
-  border-radius: 16px;
-  text-align: center;
-  font-size: 1.05rem;
-  font-weight: 600;
-  box-shadow: 0 12px 30px rgba(13,71,161,0.35);
-}
-
-.price-box span {
-  display: block;
-  font-size: 2rem;
-  font-weight: 800;
-  margin-top: 4px;
-  letter-spacing: 0.5px;
-}
-
-/* Button polish */
-.customize-card .btn {
-  margin-top: 10px;
-  padding: 16px;
-  font-size: 1.05rem;
+  header { flex-direction: column; }
+  .hero { grid-template-columns: 1fr; text-align: center; }
+  .contact-page { flex-direction: column; }
+  .youtube iframe { height: 260px; }
 }
