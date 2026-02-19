@@ -423,3 +423,47 @@ footer {
   transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(79,172,254,0.4);
 }
+/* ================= DRIVE LINK UX ================= */
+
+.drive-link-box {
+  position: relative;
+}
+
+.drive-link-box input {
+  padding-right: 44px;
+}
+
+.drive-status {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+.drive-status.valid {
+  opacity: 1;
+  color: #16a34a;
+}
+
+.drive-status.invalid {
+  opacity: 1;
+  color: #dc2626;
+}
+
+.drive-link-valid {
+  border-color: #22c55e !important;
+  background: #f0fdf4;
+}
+
+.drive-link-invalid {
+  border-color: #ef4444 !important;
+  background: #fef2f2;
+}
+
+button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
