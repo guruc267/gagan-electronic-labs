@@ -24,7 +24,7 @@ body {
 }
 
 /* =========================
-   HEADER
+   HEADER / NAVBAR
 ========================= */
 header {
   position: sticky;
@@ -68,7 +68,7 @@ nav a:hover::after {
 }
 
 /* =========================
-   BUTTON
+   BUTTONS
 ========================= */
 .btn {
   display: inline-block;
@@ -94,7 +94,7 @@ nav a:hover::after {
 }
 
 /* =========================
-   HERO
+   HERO SECTION
 ========================= */
 .hero {
   min-height: 90vh;
@@ -147,7 +147,7 @@ nav a:hover::after {
 }
 
 /* =========================
-   YOUTUBE
+   YOUTUBE SECTION
 ========================= */
 .youtube {
   background: white;
@@ -168,7 +168,7 @@ nav a:hover::after {
 }
 
 /* =========================
-   CONTACT (LIKED VERSION)
+   CONTACT PAGE (LOTTIE VERSION)
 ========================= */
 .contact-page {
   min-height: 90vh;
@@ -179,6 +179,7 @@ nav a:hover::after {
   padding: 70px 40px;
 }
 
+/* CONTACT FORM CARD */
 .contact-form-box {
   background: white;
   padding: 45px 40px;
@@ -198,6 +199,7 @@ nav a:hover::after {
   opacity: 0.85;
 }
 
+/* FORM */
 .contact-form input,
 .contact-form textarea {
   width: 100%;
@@ -221,6 +223,7 @@ nav a:hover::after {
   box-shadow: 0 0 10px rgba(25,118,210,0.35);
 }
 
+/* CONTACT INFO */
 .contact-info {
   margin-top: 25px;
   font-size: 0.95rem;
@@ -230,21 +233,32 @@ nav a:hover::after {
   margin-bottom: 6px;
 }
 
-/* CONTACT IMAGE + SAFE ANIMATION */
-.contact-illustration img {
+/* =========================
+   CONTACT LOTTIE ANIMATION
+========================= */
+.contact-illustration {
   width: 100%;
   max-width: 480px;
-  animation: float 4s ease-in-out infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@keyframes float {
+.contact-illustration lottie-player {
+  width: 100%;
+  max-width: 420px;
+  height: 420px;
+  animation: lottieFloat 4.5s ease-in-out infinite;
+}
+
+@keyframes lottieFloat {
   0% { transform: translateY(0); }
-  50% { transform: translateY(-14px); }
+  50% { transform: translateY(-16px); }
   100% { transform: translateY(0); }
 }
 
 /* =========================
-   PROJECTS
+   PROJECTS PAGE
 ========================= */
 .projects-page {
   min-height: 100vh;
@@ -272,7 +286,7 @@ nav a:hover::after {
 }
 
 /* =========================
-   WHATSAPP
+   WHATSAPP FLOATING BUTTON
 ========================= */
 .whatsapp {
   position: fixed;
@@ -284,6 +298,7 @@ nav a:hover::after {
   border-radius: 50%;
   font-size: 22px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+  z-index: 999;
 }
 
 /* =========================
