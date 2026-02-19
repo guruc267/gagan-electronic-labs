@@ -304,91 +304,90 @@ if (toggle) {
       document.body.classList.contains("dark") ? "☀️" : "🌙";
   });
 }
-<script>
-const form = document.getElementById("customForm");
-if (!form) return;
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("customForm");
+  if (!form) return; // SAFE now
 
-const fileInput = document.getElementById("designFiles");
-const driveLinksField = document.getElementById("driveLinks");
+  const fileInput = document.getElementById("designFiles");
+  const driveLinksField = document.getElementById("driveLinks");
 
-const uploadBox = document.getElementById("uploadStatus");
-const progressBar = document.getElementById("progressBar");
-const progressText = document.getElementById("progressText");
-const successMessage = document.getElementById("successMessage");
+  const uploadBox = document.getElementById("uploadStatus");
+  const progressBar = document.getElementById("progressBar");
+  const progressText = document.getElementById("progressText");
+  const successMessage = document.getElementById("successMessage");
 
-form.addEventListener("submit", async function (e) {
-  e.preventDefault();
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
 
-  const submitBtn = form.querySelector("button[type='submit']");
-  submitBtn.disabled = true;
-  submitBtn.innerText = "Uploading...";
+    const submitBtn = form.querySelector("button[type='submit']");
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Uploading...";
 
-  uploadBox.style.display = "block";
-  progressBar.style.width = "0%";
-  progressText.innerText = "Uploading files to Google Drive...";
+    uploadBox.style.display = "block";
+    progressBar.style.width = "0%";
+    progressText.innerText = "Uploading files to Google Drive...";
 
-  const files = [];
-  let completed = 0;
+    const files = [];
+    let completed = 0;
 
-  for (const file of fileInput.files) {
-    const base64 = await toBase64(file);
-    files.push({
-      name: file.name,
-      type: file.type,
-      base64: base64.split(",")[1]
-    });
+    for (const file of fileInput.files) {
+      const base64 = await toBase64(file);
+      files.push({
+        name: file.name,
+        type: file.type,
+        base64: base64.split(",")[1]
+      });
 
-    completed++;
-    progressBar.style.width =
-      Math.round((completed / fileInput.files.length) * 60) + "%";
-  }
-
-  // GOOGLE DRIVE UPLOAD
-  const response = await fetch(
-    "https://script.google.com/macros/s/AKfycbyeFyaY0dDYDAESvfBEd5MgQWZGVBDR2jZulXwhuRBv5Fb-jaRsupgjVEGzuus0ksrVoQ/exec",
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ files })
+      completed++;
+      progressBar.style.width =
+        Math.round((completed / fileInput.files.length) * 60) + "%";
     }
-  );
 
-  const result = await response.json();
+    const response = await fetch(
+      "https://script.google.com/macros/s/AKfycbyeFyaY0dDYDAESvfBEd5MgQWZGVBDR2jZulXwhuRBv5Fb-jaRsupgjVEGzuus0ksrVoQ/exec",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ files })
+      }
+    );
 
-  if (!result.success) {
-    alert("Upload failed. Please try again.");
-    submitBtn.disabled = false;
-    submitBtn.innerText = "Submit Project Request";
-    return;
-  }
+    const result = await response.json();
 
-  progressBar.style.width = "85%";
-  progressText.innerText = "Sending project details...";
+    if (!result.success) {
+      alert("Upload failed. Please try again.");
+      submitBtn.disabled = false;
+      submitBtn.innerText = "Submit Project Request";
+      return;
+    }
 
-  driveLinksField.value = result.links.join("\n");
+    progressBar.style.width = "85%";
+    progressText.innerText = "Sending project details...";
 
-  // SEND TO FORMSPREE
-  fetch(form.action, {
-    method: "POST",
-    body: new FormData(form),
-    headers: { Accept: "application/json" }
-  }).then(() => {
-    progressBar.style.width = "100%";
-    progressText.innerText = "Done!";
-    successMessage.style.display = "block";
-    submitBtn.disabled = false;
-    submitBtn.innerText = "Submit Project Request";
-    form.reset();
+    driveLinksField.value = result.links.join("\n");
+
+    fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: { Accept: "application/json" }
+    }).then(() => {
+      progressBar.style.width = "100%";
+      progressText.innerText = "Done!";
+      successMessage.style.display = "block";
+      submitBtn.disabled = false;
+      submitBtn.innerText = "Submit Project Request";
+      form.reset();
+    });
   });
+
+  function toBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
 });
 
-function toBase64(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
-}
-</script>
 
