@@ -112,3 +112,44 @@ document.addEventListener("DOMContentLoaded", () => {
     // Let Formspree submit naturally
   });
 });
+/* ======================================================
+   GOOGLE DRIVE LINK – UX POLISH
+====================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const driveInput = document.getElementById("driveLinkInput");
+  const driveStatus = document.getElementById("driveStatus");
+  const submitBtn = document.querySelector(
+    ".custom-form button[type='submit']"
+  );
+
+  if (!driveInput || !submitBtn) return;
+
+  // Disable submit initially
+  submitBtn.disabled = true;
+
+  const DRIVE_REGEX =
+    /^https?:\/\/(drive\.google\.com)\/(file\/d\/|drive\/folders\/).+/;
+
+  driveInput.addEventListener("input", () => {
+    const value = driveInput.value.trim();
+
+    if (DRIVE_REGEX.test(value)) {
+      driveInput.classList.remove("drive-link-invalid");
+      driveInput.classList.add("drive-link-valid");
+
+      driveStatus.textContent = "✔";
+      driveStatus.className = "drive-status valid";
+
+      submitBtn.disabled = false;
+    } else {
+      driveInput.classList.remove("drive-link-valid");
+      driveInput.classList.add("drive-link-invalid");
+
+      driveStatus.textContent = "✖";
+      driveStatus.className = "drive-status invalid";
+
+      submitBtn.disabled = true;
+    }
+  });
+});
