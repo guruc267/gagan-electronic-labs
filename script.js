@@ -29,7 +29,7 @@ window.addEventListener("scroll", () => {
 });
 
 /* ======================================================
-   DARK MODE (SAFE – OPTIONAL)
+   DARK MODE (Optional)
 ====================================================== */
 const darkToggle = $("darkToggle");
 if (darkToggle) {
@@ -62,11 +62,11 @@ if (contactForm) {
 }
 
 /* ======================================================
-   CUSTOMIZE PAGE LOGIC
+   CUSTOMIZE PAGE LOGIC (NO FILE UPLOAD)
 ====================================================== */
 document.addEventListener("DOMContentLoaded", () => {
   const customForm = $("customForm");
-  if (!customForm) return; // 🔐 Exit if not customize page
+  if (!customForm) return; // ✅ Only run on customize page
 
   const projectType = $("projectType");
   const gramsBox = $("gramsBox");
@@ -74,14 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const gramsInput = $("grams");
   const totalCost = $("totalCost");
   const estimatedField = $("estimatedCostField");
-
-  const fileInput = $("designFiles");
-  const driveLinksField = $("driveLinks");
-
-  const uploadBox = $("uploadStatus");
-  const progressBar = $("progressBar");
-  const progressText = $("progressText");
-  const successMessage = $("successMessage");
 
   /* ================= PRICE LOGIC ================= */
   window.handleProjectType = function () {
@@ -112,94 +104,11 @@ document.addEventListener("DOMContentLoaded", () => {
     estimatedField.value = "₹" + cost;
   };
 
-  /* ================= FORM SUBMIT ================= */
-  customForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const submitBtn = customForm.querySelector("button[type='submit']");
-    submitBtn.disabled = true;
-    submitBtn.innerText = "Uploading...";
-
-    /* ---------- FILE SIZE LIMIT (CRITICAL FIX) ---------- */
-    const MAX_TOTAL_SIZE = 2 * 1024 * 1024; // 2 MB
-    let totalSize = 0;
-
-    for (const file of fileInput.files) {
-      totalSize += file.size;
-    }
-
-    if (totalSize > MAX_TOTAL_SIZE) {
-      alert("Total file size must be under 2 MB. Please compress your files.");
-      submitBtn.disabled = false;
-      submitBtn.innerText = "Submit Project Request";
-      return;
-    }
-
-    /* ---------- UI ---------- */
-    uploadBox.style.display = "block";
-    progressBar.style.width = "0%";
-    progressText.innerText = "Uploading files to Google Drive...";
-
-    /* ---------- BASE64 ---------- */
-    const files = [];
-    let completed = 0;
-
-    for (const file of fileInput.files) {
-      const base64 = await toBase64(file);
-      files.push({
-        name: file.name,
-        type: file.type,
-        base64: base64.split(",")[1]
-      });
-
-      completed++;
-      progressBar.style.width =
-        Math.round((completed / fileInput.files.length) * 60) + "%";
-    }
-
-    /* ---------- GOOGLE DRIVE ---------- */
-    const response = await fetch(
-      "https://script.google.com/macros/s/AKfycby09YCTP4uBgjqJ05HoNY-3kDHPhBQQ5eHs1ItsKnVBHq3Q0D01sep8mIWoEOzi3-5p/exec",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ files })
-      }
-    );
-
-    const result = await response.json();
-    if (!result.success) {
-      alert("Upload failed. Please try again.");
-      submitBtn.disabled = false;
-      submitBtn.innerText = "Submit Project Request";
-      return;
-    }
-
-    /* ---------- FORMSPREE ---------- */
-    progressBar.style.width = "85%";
-    progressText.innerText = "Sending project details...";
-    driveLinksField.value = result.links.join("\n");
-
-    await fetch(customForm.action, {
-      method: "POST",
-      body: new FormData(customForm),
-      headers: { Accept: "application/json" }
-    });
-
-    /* ---------- DONE ---------- */
-    progressBar.style.width = "100%";
-    progressText.innerText = "Done!";
-    successMessage.style.display = "block";
-    submitBtn.innerText = "Submitted";
-    customForm.reset();
+  /* ================= FORM SUBMIT =================
+     (Formspree handles everything)
+  ================================================= */
+  customForm.addEventListener("submit", () => {
+    // No JS interception needed
+    // Let Formspree submit naturally
   });
-
-  function toBase64(file) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
-    });
-  }
 });
