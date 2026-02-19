@@ -62,11 +62,11 @@ if (contactForm) {
 }
 
 /* ======================================================
-   CUSTOMIZE PAGE LOGIC (NO FILE UPLOAD)
+   CUSTOMIZE PAGE LOGIC
 ====================================================== */
 document.addEventListener("DOMContentLoaded", () => {
   const customForm = $("customForm");
-  if (!customForm) return; // ✅ Only run on customize page
+  if (!customForm) return; // 🔐 only customize page
 
   const projectType = $("projectType");
   const gramsBox = $("gramsBox");
@@ -75,81 +75,92 @@ document.addEventListener("DOMContentLoaded", () => {
   const totalCost = $("totalCost");
   const estimatedField = $("estimatedCostField");
 
+  const driveInput = $("driveLinkInput");
+  const driveStatus = $("driveStatus");
+  const submitBtn = customForm.querySelector("button[type='submit']");
+
   /* ================= PRICE LOGIC ================= */
+
   window.handleProjectType = function () {
     const type = projectType.value;
 
     if (type === "3D Printing") {
       gramsBox.style.display = "flex";
       fixedCostBox.style.display = "none";
+
       totalCost.innerText = "50";
       estimatedField.value = "₹50 (Base Service Charge)";
-    } else if (type) {
+
+      if (gramsInput) gramsInput.value = "";
+    }
+    else if (type) {
       gramsBox.style.display = "none";
       fixedCostBox.style.display = "block";
+
       totalCost.innerText = "1500";
       estimatedField.value = "₹1500 – ₹3000 (After Review)";
-    } else {
+    }
+    else {
       gramsBox.style.display = "none";
       fixedCostBox.style.display = "none";
+
       totalCost.innerText = "0";
       estimatedField.value = "₹0";
     }
   };
 
   window.calculateCost = function () {
-    const grams = gramsInput.value || 0;
+    if (!gramsInput) return;
+
+    const grams = parseFloat(gramsInput.value) || 0;
     const cost = grams * 10 + 50;
+
     totalCost.innerText = cost;
     estimatedField.value = "₹" + cost;
   };
 
-  /* ================= FORM SUBMIT =================
-     (Formspree handles everything)
-  ================================================= */
+  /* ======================================================
+     GOOGLE DRIVE LINK – UX POLISH
+  ======================================================= */
+
+  if (driveInput && submitBtn) {
+    submitBtn.disabled = true;
+
+    const DRIVE_REGEX =
+      /^https?:\/\/(drive\.google\.com)\/(file\/d\/|drive\/folders\/).+/;
+
+    driveInput.addEventListener("input", () => {
+      const value = driveInput.value.trim();
+
+      if (DRIVE_REGEX.test(value)) {
+        driveInput.classList.remove("drive-link-invalid");
+        driveInput.classList.add("drive-link-valid");
+
+        if (driveStatus) {
+          driveStatus.textContent = "✔";
+          driveStatus.className = "drive-status valid";
+        }
+
+        submitBtn.disabled = false;
+      } else {
+        driveInput.classList.remove("drive-link-valid");
+        driveInput.classList.add("drive-link-invalid");
+
+        if (driveStatus) {
+          driveStatus.textContent = "✖";
+          driveStatus.className = "drive-status invalid";
+        }
+
+        submitBtn.disabled = true;
+      }
+    });
+  }
+
+  /* ======================================================
+     FORM SUBMIT (Formspree handles submission)
+  ======================================================= */
   customForm.addEventListener("submit", () => {
     // No JS interception needed
-    // Let Formspree submit naturally
-  });
-});
-/* ======================================================
-   GOOGLE DRIVE LINK – UX POLISH
-====================================================== */
-
-document.addEventListener("DOMContentLoaded", () => {
-  const driveInput = document.getElementById("driveLinkInput");
-  const driveStatus = document.getElementById("driveStatus");
-  const submitBtn = document.querySelector(
-    ".custom-form button[type='submit']"
-  );
-
-  if (!driveInput || !submitBtn) return;
-
-  // Disable submit initially
-  submitBtn.disabled = true;
-
-  const DRIVE_REGEX =
-    /^https?:\/\/(drive\.google\.com)\/(file\/d\/|drive\/folders\/).+/;
-
-  driveInput.addEventListener("input", () => {
-    const value = driveInput.value.trim();
-
-    if (DRIVE_REGEX.test(value)) {
-      driveInput.classList.remove("drive-link-invalid");
-      driveInput.classList.add("drive-link-valid");
-
-      driveStatus.textContent = "✔";
-      driveStatus.className = "drive-status valid";
-
-      submitBtn.disabled = false;
-    } else {
-      driveInput.classList.remove("drive-link-valid");
-      driveInput.classList.add("drive-link-invalid");
-
-      driveStatus.textContent = "✖";
-      driveStatus.className = "drive-status invalid";
-
-      submitBtn.disabled = true;
-    }
+    // Formspree will handle submission
   });
 });
