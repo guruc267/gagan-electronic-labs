@@ -1,54 +1,87 @@
-document.addEventListener("DOMContentLoaded", () => {
+/* ======================================================
+   SAFE GLOBAL UTILITIES
+====================================================== */
+function $(id) {
+  return document.getElementById(id);
+}
 
-  /* ================= PROJECT FILTER ================= */
-  window.filterProjects = function (type) {
-    document.querySelectorAll(".project-card").forEach(card => {
-      card.style.display =
-        type === "all" || card.classList.contains(type)
-          ? "block"
-          : "none";
-    });
-  };
-
-  /* ================= NAVBAR SHADOW ================= */
-  const header = document.querySelector("header");
-  window.addEventListener("scroll", () => {
-    if (header) {
-      header.style.boxShadow =
-        window.scrollY > 20 ? "0 5px 15px rgba(0,0,0,.2)" : "none";
-    }
+/* ======================================================
+   PROJECT FILTER (Projects Page)
+====================================================== */
+window.filterProjects = function (type) {
+  document.querySelectorAll(".project-card").forEach(card => {
+    card.style.display =
+      type === "all" || card.classList.contains(type)
+        ? "block"
+        : "none";
   });
+};
 
-  /* ================= CONTACT FORM SUCCESS ================= */
-  const contactForm = document.getElementById("contactForm");
-  if (contactForm) {
-    contactForm.addEventListener("submit", () => {
-      setTimeout(() => {
-        const msg = document.querySelector(".success-message");
-        if (msg) msg.style.display = "block";
-        contactForm.reset();
-      }, 800);
-    });
+/* ======================================================
+   NAVBAR SHADOW (All Pages)
+====================================================== */
+window.addEventListener("scroll", () => {
+  const header = document.querySelector("header");
+  if (header) {
+    header.style.boxShadow =
+      window.scrollY > 20 ? "0 5px 15px rgba(0,0,0,.2)" : "none";
+  }
+});
+
+/* ======================================================
+   DARK MODE (SAFE – OPTIONAL)
+====================================================== */
+const darkToggle = $("darkToggle");
+if (darkToggle) {
+  if (localStorage.theme === "dark") {
+    document.body.classList.add("dark");
+    darkToggle.textContent = "☀️";
   }
 
-  /* ================= CUSTOMIZE PAGE ================= */
-  const customForm = document.getElementById("customForm");
-  if (!customForm) return; // stop JS here if not customize page
+  darkToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+    localStorage.theme =
+      document.body.classList.contains("dark") ? "dark" : "light";
+    darkToggle.textContent =
+      document.body.classList.contains("dark") ? "☀️" : "🌙";
+  });
+}
 
-  const projectType = document.getElementById("projectType");
-  const gramsBox = document.getElementById("gramsBox");
-  const fixedCostBox = document.getElementById("fixedCostBox");
-  const gramsInput = document.getElementById("grams");
-  const totalCost = document.getElementById("totalCost");
-  const estimatedField = document.getElementById("estimatedCostField");
+/* ======================================================
+   CONTACT FORM SUCCESS (Contact Page)
+====================================================== */
+const contactForm = $("contactForm");
+if (contactForm) {
+  contactForm.addEventListener("submit", () => {
+    setTimeout(() => {
+      const msg = document.querySelector(".success-message");
+      if (msg) msg.style.display = "block";
+      contactForm.reset();
+    }, 800);
+  });
+}
 
-  const fileInput = document.getElementById("designFiles");
-  const driveLinksField = document.getElementById("driveLinks");
+/* ======================================================
+   CUSTOMIZE PAGE LOGIC
+====================================================== */
+document.addEventListener("DOMContentLoaded", () => {
+  const customForm = $("customForm");
+  if (!customForm) return; // 🔐 Exit if not customize page
 
-  const uploadBox = document.getElementById("uploadStatus");
-  const progressBar = document.getElementById("progressBar");
-  const progressText = document.getElementById("progressText");
-  const successMessage = document.getElementById("successMessage");
+  const projectType = $("projectType");
+  const gramsBox = $("gramsBox");
+  const fixedCostBox = $("fixedCostBox");
+  const gramsInput = $("grams");
+  const totalCost = $("totalCost");
+  const estimatedField = $("estimatedCostField");
+
+  const fileInput = $("designFiles");
+  const driveLinksField = $("driveLinks");
+
+  const uploadBox = $("uploadStatus");
+  const progressBar = $("progressBar");
+  const progressText = $("progressText");
+  const successMessage = $("successMessage");
 
   /* ================= PRICE LOGIC ================= */
   window.handleProjectType = function () {
@@ -87,10 +120,27 @@ document.addEventListener("DOMContentLoaded", () => {
     submitBtn.disabled = true;
     submitBtn.innerText = "Uploading...";
 
+    /* ---------- FILE SIZE LIMIT (CRITICAL FIX) ---------- */
+    const MAX_TOTAL_SIZE = 2 * 1024 * 1024; // 2 MB
+    let totalSize = 0;
+
+    for (const file of fileInput.files) {
+      totalSize += file.size;
+    }
+
+    if (totalSize > MAX_TOTAL_SIZE) {
+      alert("Total file size must be under 2 MB. Please compress your files.");
+      submitBtn.disabled = false;
+      submitBtn.innerText = "Submit Project Request";
+      return;
+    }
+
+    /* ---------- UI ---------- */
     uploadBox.style.display = "block";
     progressBar.style.width = "0%";
     progressText.innerText = "Uploading files to Google Drive...";
 
+    /* ---------- BASE64 ---------- */
     const files = [];
     let completed = 0;
 
@@ -107,6 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
         Math.round((completed / fileInput.files.length) * 60) + "%";
     }
 
+    /* ---------- GOOGLE DRIVE ---------- */
     const response = await fetch(
       "https://script.google.com/macros/s/AKfycbx5kx4Yd4xEYrjh2iBe6pji6KyFIx6T63dB0iWT6_Do4LgynOxKGO52nxYudFabdaV0PA/exec",
       {
@@ -124,6 +175,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    /* ---------- FORMSPREE ---------- */
     progressBar.style.width = "85%";
     progressText.innerText = "Sending project details...";
     driveLinksField.value = result.links.join("\n");
@@ -134,6 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
       headers: { Accept: "application/json" }
     });
 
+    /* ---------- DONE ---------- */
     progressBar.style.width = "100%";
     progressText.innerText = "Done!";
     successMessage.style.display = "block";
@@ -149,5 +202,4 @@ document.addEventListener("DOMContentLoaded", () => {
       reader.readAsDataURL(file);
     });
   }
-
 });
