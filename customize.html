@@ -10,7 +10,7 @@
 
   <link rel="stylesheet" href="style.css">
 
-  <!-- DRIVE LINK UX -->
+  <!-- DRIVE LINK UX (ONLY UI STYLES) -->
   <style>
     .drive-link-box {
       position: relative;
@@ -62,13 +62,13 @@
 <!-- ================= CUSTOMIZE SECTION ================= -->
 <section class="customize-section">
 
-  <!-- LEFT CARD -->
   <div class="customize-card">
     <h2>Instant Project Cost Estimator</h2>
     <p class="subtitle">Get a quick estimate before submitting your project.</p>
 
-    <!-- FORMSPREE FORM -->
+    <!-- ✅ FIXED: ID ADDED -->
     <form
+      id="customForm"
       class="custom-form"
       action="https://formspree.io/f/mqedljpp"
       method="POST"
@@ -97,11 +97,9 @@
         <option value="MATLAB / Simulation">MATLAB / Simulation</option>
       </select>
 
-      <!-- ================= GOOGLE DRIVE UPLOAD ================= -->
+      <!-- ================= GOOGLE DRIVE ================= -->
       <div class="upload-box polished-upload">
-        <label class="upload-label">
-          Upload Design Files (Google Drive)
-        </label>
+        <label class="upload-label">Upload Design Files (Google Drive)</label>
 
         <p class="upload-hint">
           Step 1: Upload STL / STEP / PDF to Google Drive
@@ -119,7 +117,6 @@
           Step 2: Paste the Google Drive link below
         </p>
 
-        <!-- DRIVE LINK + TICK -->
         <div class="drive-link-box">
           <input
             type="url"
@@ -129,7 +126,7 @@
             required
           >
 
-          <!-- SMALL LOTTIE CHECK -->
+          <!-- ✅ SMALL LOTTIE TICK -->
           <lottie-player
             id="driveTick"
             class="drive-tick"
@@ -139,19 +136,19 @@
           </lottie-player>
         </div>
 
-        <small id="driveHelp" class="upload-hint">
+        <small class="upload-hint">
           Paste a valid Google Drive file or folder link
         </small>
       </div>
-      <!-- ======================================================= -->
 
-      <!-- 3D PRINT ONLY -->
+      <!-- ================= 3D PRINT ================= -->
       <div class="calc-box" id="gramsBox" style="display:none;">
         <input
           type="number"
           id="grams"
+          min="1"
+          step="1"
           placeholder="3D Print Weight (grams)"
-          oninput="calculateCost()"
         >
         <span>₹10 / gram + ₹50 service charge</span>
       </div>
@@ -176,7 +173,13 @@
         value="₹0"
       >
 
-      <button type="submit" class="btn full-btn" id="submitBtn" disabled>
+      <!-- ✅ FIXED BUTTON -->
+      <button
+        type="submit"
+        class="btn full-btn"
+        id="submitBtn"
+        disabled
+      >
         Submit Project Request
       </button>
 
@@ -203,60 +206,8 @@
 
 <a href="https://wa.me/916301509299" class="whatsapp" target="_blank">💬</a>
 
-<!-- ================= SCRIPT ================= -->
-<script>
-/* ===== PRICE LOGIC (UNCHANGED) ===== */
-function handleProjectType() {
-  const type = projectType.value;
-
-  gramsBox.style.display = type === "3D Printing" ? "flex" : "none";
-  fixedCostBox.style.display = type && type !== "3D Printing" ? "block" : "none";
-
-  if (type === "3D Printing") {
-    totalCost.innerText = 50;
-    estimatedCostField.value = "₹50 (Base Service Charge)";
-  } else if (type) {
-    totalCost.innerText = 1500;
-    estimatedCostField.value = "₹1500 – ₹3000 (After Review)";
-  } else {
-    totalCost.innerText = 0;
-    estimatedCostField.value = "₹0";
-  }
-}
-
-function calculateCost() {
-  const grams = gramsInput.value || 0;
-  const cost = grams * 10 + 50;
-  totalCost.innerText = cost;
-  estimatedCostField.value = "₹" + cost;
-}
-
-/* ===== DRIVE LINK VALIDATION + LOTTIE ===== */
-const driveInput = document.getElementById("driveLinkInput");
-const tick = document.getElementById("driveTick");
-const submitBtn = document.getElementById("submitBtn");
-
-const DRIVE_REGEX =
-  /^https?:\/\/(drive\.google\.com)\/(file\/d\/|drive\/folders\/).+/;
-
-driveInput.addEventListener("input", () => {
-  if (DRIVE_REGEX.test(driveInput.value.trim())) {
-    driveInput.classList.add("drive-valid");
-    driveInput.classList.remove("drive-invalid");
-
-    tick.style.display = "block";
-    tick.play();
-
-    submitBtn.disabled = false;
-  } else {
-    driveInput.classList.remove("drive-valid");
-    driveInput.classList.add("drive-invalid");
-
-    tick.style.display = "none";
-    submitBtn.disabled = true;
-  }
-});
-</script>
+<!-- ✅ ONLY ONE SCRIPT -->
+<script src="script.js"></script>
 
 </body>
 </html>
