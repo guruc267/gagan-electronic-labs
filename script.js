@@ -62,11 +62,11 @@ if (contactForm) {
 }
 
 /* ======================================================
-   CUSTOMIZE PAGE LOGIC
+   CUSTOMIZE PAGE LOGIC (FINAL FIXED)
 ====================================================== */
 document.addEventListener("DOMContentLoaded", () => {
   const customForm = $("customForm");
-  if (!customForm) return; // 🔐 only customize page
+  if (!customForm) return; // ✅ run only on customize page
 
   const projectType = $("projectType");
   const gramsBox = $("gramsBox");
@@ -79,7 +79,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const driveStatus = $("driveStatus");
   const submitBtn = customForm.querySelector("button[type='submit']");
 
-  /* ================= PRICE LOGIC ================= */
+  /* ======================================================
+     PRICE LOGIC (FIXED)
+  ======================================================= */
 
   window.handleProjectType = function () {
     const type = projectType.value;
@@ -109,20 +111,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  window.calculateCost = function () {
-    if (!gramsInput) return;
+  /* ---------- LIVE 3D PRINT COST ---------- */
+  if (gramsInput) {
+    gramsInput.addEventListener("input", () => {
+      const grams = parseFloat(gramsInput.value);
 
-    const grams = parseFloat(gramsInput.value) || 0;
-    const cost = grams * 10 + 50;
+      if (isNaN(grams) || grams <= 0) {
+        totalCost.innerText = "50";
+        estimatedField.value = "₹50 (Base Service Charge)";
+        return;
+      }
 
-    totalCost.innerText = cost;
-    estimatedField.value = "₹" + cost;
-  };
+      const cost = grams * 10 + 50;
+      totalCost.innerText = cost;
+      estimatedField.value = "₹" + cost;
+    });
+  }
 
   /* ======================================================
      GOOGLE DRIVE LINK – UX POLISH
   ======================================================= */
-
   if (driveInput && submitBtn) {
     submitBtn.disabled = true;
 
@@ -157,10 +165,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ======================================================
-     FORM SUBMIT (Formspree handles submission)
+     FORM SUBMIT
   ======================================================= */
   customForm.addEventListener("submit", () => {
-    // No JS interception needed
-    // Formspree will handle submission
+    // Formspree will handle submission naturally
   });
 });
