@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Request Custom Project | GAGAN ELECTRONIC LABS</title>
+  <title>Custom Project | GAGAN ELECTRONIC LABS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Google Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- LOTTIE -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
-  <!-- Main CSS -->
+  <!-- MAIN CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -29,7 +28,9 @@
 <!-- CUSTOMIZE SECTION -->
 <section class="customize-section">
 
+  <!-- LEFT : FORM -->
   <div class="customize-card">
+
     <h2>Instant Project Cost Estimator</h2>
     <p>Estimate your project cost instantly and submit your request.</p>
 
@@ -49,16 +50,22 @@
       </select>
 
       <!-- FILE UPLOAD -->
-      <label><strong>Upload Design Files</strong></label>
-      <input type="file" accept=".stl,.step,.pdf" multiple>
-      <small>Accepted formats: STL, STEP, PDF</small>
+      <label class="upload-label">Upload Design Files</label>
+      <input type="file" class="upload-input" accept=".stl,.step,.pdf" multiple>
+      <small class="hint">Accepted: STL, STEP, PDF</small>
 
-      <!-- CALCULATOR INPUTS -->
-      <input type="number" id="weight" placeholder="3D Print Weight (grams)">
-      <small>₹10 per gram</small>
+      <!-- COST INPUTS -->
+      <div class="calc-grid">
+        <div>
+          <input type="number" id="weight" placeholder="3D Print Weight (grams)">
+          <small>₹10 / gram</small>
+        </div>
 
-      <input type="number" id="hours" placeholder="Development Hours">
-      <small>₹5 per hour</small>
+        <div>
+          <input type="number" id="hours" placeholder="Development Hours">
+          <small>₹5 / hour</small>
+        </div>
+      </div>
 
       <!-- DESCRIPTION -->
       <textarea placeholder="Describe your project (optional)"></textarea>
@@ -76,6 +83,17 @@
     </form>
   </div>
 
+  <!-- RIGHT : LOTTIE -->
+  <div class="contact-illustration">
+    <lottie-player
+      src="https://assets10.lottiefiles.com/packages/lf20_qp1q7mct.json"
+      background="transparent"
+      speed="1"
+      loop
+      autoplay>
+    </lottie-player>
+  </div>
+
 </section>
 
 <!-- FOOTER -->
@@ -86,16 +104,13 @@
 <!-- WHATSAPP -->
 <a href="https://wa.me/916301509299" class="whatsapp" target="_blank">💬</a>
 
-<!-- SCRIPT -->
 <script>
   function calculateCost() {
     const weight = document.getElementById("weight").value || 0;
     const hours = document.getElementById("hours").value || 0;
-    const total = (weight * 10) + (hours * 5);
-    document.getElementById("totalCost").innerText = total;
+    document.getElementById("totalCost").innerText = (weight * 10) + (hours * 5);
   }
 
-  // Dark mode toggle
   document.getElementById("darkToggle").onclick = () => {
     document.body.classList.toggle("dark");
   };
