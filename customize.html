@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Custom Project | GAGAN ELECTRONIC LABS</title>
+  <title>Instant Cost Estimator | GAGAN ELECTRONIC LABS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- LOTTIE -->
@@ -13,7 +13,6 @@
 </head>
 <body>
 
-<!-- HEADER -->
 <header>
   <h1>GAGAN ELECTRONIC LABS</h1>
   <nav>
@@ -25,14 +24,15 @@
   <button id="darkToggle">🌙</button>
 </header>
 
-<!-- CUSTOMIZE SECTION -->
 <section class="customize-section">
 
-  <!-- LEFT : FORM -->
+  <!-- LEFT CARD -->
   <div class="customize-card">
 
     <h2>Instant Project Cost Estimator</h2>
-    <p>Estimate your project cost instantly and submit your request.</p>
+    <p class="subtitle">
+      Upload your design and get an instant cost estimate.
+    </p>
 
     <form class="custom-form" oninput="calculateCost()">
 
@@ -40,42 +40,44 @@
       <input type="email" placeholder="Your Email" required>
 
       <!-- PROJECT TYPE -->
-      <select id="projectType" required>
+      <select required>
         <option value="">Select Project Type</option>
-        <option value="3d">3D Printing</option>
-        <option value="electronics">Electronics / IoT</option>
-        <option value="robotics">Robotics</option>
-        <option value="lora">LoRa / EV Systems</option>
-        <option value="matlab">MATLAB / Simulation</option>
+        <option>3D Printing</option>
+        <option>Electronics / IoT</option>
+        <option>Robotics</option>
+        <option>LoRa / EV Systems</option>
+        <option>MATLAB / Simulation</option>
       </select>
 
       <!-- FILE UPLOAD -->
-      <label class="upload-label">Upload Design Files</label>
-      <input type="file" class="upload-input" accept=".stl,.step,.pdf" multiple>
-      <small class="hint">Accepted: STL, STEP, PDF</small>
-
-      <!-- COST INPUTS -->
-      <div class="calc-grid">
-        <div>
-          <input type="number" id="weight" placeholder="3D Print Weight (grams)">
-          <small>₹10 / gram</small>
-        </div>
-
-        <div>
-          <input type="number" id="hours" placeholder="Development Hours">
-          <small>₹5 / hour</small>
-        </div>
+      <div class="upload-box">
+        <label>Upload Design Files</label>
+        <input type="file" accept=".stl,.step,.pdf" multiple>
+        <small>Accepted formats: STL, STEP, PDF</small>
       </div>
 
-      <!-- DESCRIPTION -->
-      <textarea placeholder="Describe your project (optional)"></textarea>
+      <!-- WEIGHT INPUT -->
+      <div class="calc-box">
+        <input
+          type="number"
+          id="grams"
+          placeholder="3D Print Weight (grams)"
+        >
+        <span>₹10 / gram</span>
+      </div>
 
-      <!-- PRICE -->
+      <!-- FIXED COST INFO -->
+      <div class="fixed-cost">
+        <strong>Development Cost (Admin Defined)</strong>
+        <p>Average: <b>₹1500 / week</b></p>
+      </div>
+
+      <!-- FINAL PRICE -->
       <div class="price-box">
-        Estimated Cost: ₹<span id="totalCost">0</span>
+        Estimated Total Cost:
+        <span>₹<span id="totalCost">1500</span></span>
       </div>
 
-      <!-- SUBMIT -->
       <button type="submit" class="btn full-btn">
         Submit Project Request
       </button>
@@ -83,10 +85,10 @@
     </form>
   </div>
 
-  <!-- RIGHT : LOTTIE -->
+  <!-- RIGHT LOTTIE -->
   <div class="contact-illustration">
     <lottie-player
-      src="https://assets10.lottiefiles.com/packages/lf20_qp1q7mct.json"
+      src="https://assets8.lottiefiles.com/packages/lf20_0yfsb3a1.json"
       background="transparent"
       speed="1"
       loop
@@ -96,24 +98,18 @@
 
 </section>
 
-<!-- FOOTER -->
 <footer>
   © 2026 Gagan Electronic Labs. All Rights Reserved.
 </footer>
 
-<!-- WHATSAPP -->
 <a href="https://wa.me/916301509299" class="whatsapp" target="_blank">💬</a>
 
 <script>
   function calculateCost() {
-    const weight = document.getElementById("weight").value || 0;
-    const hours = document.getElementById("hours").value || 0;
-    document.getElementById("totalCost").innerText = (weight * 10) + (hours * 5);
+    const grams = document.getElementById("grams").value || 0;
+    const base = 1500;
+    document.getElementById("totalCost").innerText = (grams * 10) + base;
   }
-
-  document.getElementById("darkToggle").onclick = () => {
-    document.body.classList.toggle("dark");
-  };
 </script>
 
 </body>
