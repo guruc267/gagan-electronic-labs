@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
       gramsBox.style.display = "flex";
       fixedCostBox.style.display = "none";
 
-      totalCost.innerText = "50";
+      animatePrice(totalCost, 0, 50);
       estimatedField.value = "₹50 (Base Service Charge)";
 
       if (gramsInput) gramsInput.value = "";
@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
       gramsBox.style.display = "none";
       fixedCostBox.style.display = "block";
 
-      totalCost.innerText = "1500";
+      animatePrice(totalCost, 50, 1500);
       estimatedField.value = "₹1500 – ₹3000 (After Review)";
     }
     else {
@@ -171,3 +171,22 @@ document.addEventListener("DOMContentLoaded", () => {
     // Formspree will handle submission naturally
   });
 });
+/* ======================================================
+   PRICE COUNTER ANIMATION
+====================================================== */
+function animatePrice(element, from, to, duration = 400) {
+  const start = performance.now();
+
+  function update(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    const value = Math.round(from + (to - from) * progress);
+    element.innerText = value;
+
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    }
+  }
+
+  requestAnimationFrame(update);
+}
+
