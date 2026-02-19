@@ -61,30 +61,36 @@
         <option value="MATLAB / Simulation">MATLAB / Simulation</option>
       </select>
 
-      <!-- GOOGLE DRIVE UPLOAD -->
-      <div class="upload-box">
-        <label>Upload Design Files (Google Drive)</label>
+      <!-- ================= GOOGLE DRIVE UPLOAD (POLISHED) ================= -->
+      <div class="upload-box polished-upload">
+        <label class="upload-label">
+          Upload Design Files (Google Drive)
+        </label>
+
+        <p class="upload-hint">
+          Step 1: Upload your STL / STEP / PDF files to Google Drive
+        </p>
 
         <a
           href="https://drive.google.com/drive/folders/12t7OI9lFH_UKXBDt_oSn6kOFQ3tB9Kg-?usp=sharing"
           target="_blank"
-          class="btn outline"
+          class="btn upload-drive-btn"
         >
           📤 Upload to Google Drive
         </a>
 
-        <small>
-          Upload your STL / STEP / PDF files to Drive and paste the link below
-        </small>
-      </div>
+        <p class="upload-hint">
+          Step 2: Paste the Google Drive file link below
+        </p>
 
-      <!-- DRIVE LINK -->
-      <input
-        type="url"
-        name="drive_links"
-        placeholder="Paste Google Drive file link here"
-        required
-      >
+        <input
+          type="url"
+          name="drive_links"
+          placeholder="https://drive.google.com/..."
+          required
+        >
+      </div>
+      <!-- ================================================================ -->
 
       <!-- 3D PRINT ONLY -->
       <div class="calc-box" id="gramsBox" style="display:none;">
