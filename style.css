@@ -383,3 +383,43 @@ footer {
     justify-content: center;
   }
 }
+
+/* ======================================================
+   GOOGLE DRIVE UPLOAD – POLISHED (ADDED)
+====================================================== */
+
+.polished-upload {
+  margin-top: 18px;
+  padding: 16px;
+  border: 2px dashed #c7d2fe;
+  border-radius: 18px;
+  background: #f8fafc;
+}
+
+.upload-label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.upload-hint {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin: 6px 0;
+}
+
+.upload-drive-btn {
+  display: inline-block;
+  margin: 10px 0;
+  padding: 12px 20px;
+  border-radius: 999px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: #000;
+  text-decoration: none;
+}
+
+.upload-drive-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(79,172,254,0.4);
+}
