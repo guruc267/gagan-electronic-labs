@@ -48,3 +48,45 @@ if(form){
   });
 }
 
+// ================= PRICE CALCULATOR =================
+const projectType = document.getElementById("projectType");
+const printFields = document.getElementById("printFields");
+const electronicsFields = document.getElementById("electronicsFields");
+const priceText = document.getElementById("price");
+
+function updatePrice() {
+  let price = 0;
+
+  if (projectType.value === "3d") {
+    const weight = document.getElementById("weight").value || 0;
+    price = weight * 10;
+  }
+
+  if (projectType.value === "electronics" || projectType.value === "lora") {
+    const hours = document.getElementById("hours").value || 0;
+    price = hours * 500;
+  }
+
+  priceText.textContent = `₹${price}`;
+}
+
+if (projectType) {
+  projectType.addEventListener("change", () => {
+    printFields.style.display = "none";
+    electronicsFields.style.display = "none";
+
+    if (projectType.value === "3d") {
+      printFields.style.display = "block";
+    }
+
+    if (projectType.value === "electronics" || projectType.value === "lora") {
+      electronicsFields.style.display = "block";
+    }
+
+    updatePrice();
+  });
+}
+
+document.addEventListener("input", updatePrice);
+
+
