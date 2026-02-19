@@ -8,7 +8,6 @@
   <!-- LOTTIE -->
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
-  <!-- MAIN CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -26,27 +25,26 @@
 
 <section class="customize-section">
 
-  <!-- LEFT CARD -->
+  <!-- CARD -->
   <div class="customize-card">
-
     <h2>Instant Project Cost Estimator</h2>
     <p class="subtitle">
-      Upload your design and get an instant cost estimate.
+      Get a quick cost estimate before submitting your project.
     </p>
 
-    <form class="custom-form" oninput="calculateCost()">
+    <form class="custom-form">
 
       <!-- EMAIL -->
       <input type="email" placeholder="Your Email" required>
 
       <!-- PROJECT TYPE -->
-      <select required>
+      <select id="projectType" onchange="handleProjectType()" required>
         <option value="">Select Project Type</option>
-        <option>3D Printing</option>
-        <option>Electronics / IoT</option>
-        <option>Robotics</option>
-        <option>LoRa / EV Systems</option>
-        <option>MATLAB / Simulation</option>
+        <option value="3d">3D Printing</option>
+        <option value="electronics">Electronics / IoT</option>
+        <option value="robotics">Robotics</option>
+        <option value="lora">LoRa / EV Systems</option>
+        <option value="matlab">MATLAB / Simulation</option>
       </select>
 
       <!-- FILE UPLOAD -->
@@ -56,26 +54,27 @@
         <small>Accepted formats: STL, STEP, PDF</small>
       </div>
 
-      <!-- WEIGHT INPUT -->
-      <div class="calc-box">
+      <!-- GRAMS (ONLY FOR 3D PRINTING) -->
+      <div class="calc-box" id="gramsBox" style="display:none;">
         <input
           type="number"
           id="grams"
           placeholder="3D Print Weight (grams)"
+          oninput="calculateCost()"
         >
-        <span>₹10 / gram</span>
+        <span>₹10 / gram + ₹50 service</span>
       </div>
 
-      <!-- FIXED COST INFO -->
-      <div class="fixed-cost">
-        <strong>Development Cost (Admin Defined)</strong>
-        <p>Average: <b>₹1500 / week</b></p>
+      <!-- FIXED PRICE INFO -->
+      <div class="fixed-cost" id="fixedCostBox" style="display:none;">
+        <strong>Average Project Cost</strong>
+        <p>₹1500 (final cost confirmed after review)</p>
       </div>
 
-      <!-- FINAL PRICE -->
+      <!-- FINAL COST -->
       <div class="price-box">
-        Estimated Total Cost:
-        <span>₹<span id="totalCost">1500</span></span>
+        Estimated Cost:
+        <span>₹<span id="totalCost">0</span></span>
       </div>
 
       <button type="submit" class="btn full-btn">
@@ -85,7 +84,7 @@
     </form>
   </div>
 
-  <!-- RIGHT LOTTIE -->
+  <!-- LOTTIE -->
   <div class="contact-illustration">
     <lottie-player
       src="https://assets8.lottiefiles.com/packages/lf20_0yfsb3a1.json"
@@ -105,10 +104,31 @@
 <a href="https://wa.me/916301509299" class="whatsapp" target="_blank">💬</a>
 
 <script>
+  function handleProjectType() {
+    const type = document.getElementById("projectType").value;
+    const gramsBox = document.getElementById("gramsBox");
+    const fixedBox = document.getElementById("fixedCostBox");
+    const total = document.getElementById("totalCost");
+
+    if (type === "3d") {
+      gramsBox.style.display = "flex";
+      fixedBox.style.display = "none";
+      total.innerText = 50; // base service charge
+    } else if (type) {
+      gramsBox.style.display = "none";
+      fixedBox.style.display = "block";
+      total.innerText = 1500;
+    } else {
+      gramsBox.style.display = "none";
+      fixedBox.style.display = "none";
+      total.innerText = 0;
+    }
+  }
+
   function calculateCost() {
     const grams = document.getElementById("grams").value || 0;
-    const base = 1500;
-    document.getElementById("totalCost").innerText = (grams * 10) + base;
+    const cost = (grams * 10) + 50;
+    document.getElementById("totalCost").innerText = cost;
   }
 </script>
 
